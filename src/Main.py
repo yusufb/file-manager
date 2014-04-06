@@ -26,7 +26,7 @@ class hwl(QtGui.QDialog,mainWindow.Ui_Dialog):
     def myprint(self):
         self.txtLine.setText('Python -- ')        
         self.txtEdit.setText('This')
-        self.lblShow.setText('is a test')
+#         self.lblShow.setText('is a test')
         
     def mypwd(self):
         fdlist = ""
