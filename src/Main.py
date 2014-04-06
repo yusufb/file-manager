@@ -27,6 +27,10 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.showDir.clicked.connect(self.showDirFunc)
         self.txtLine.returnPressed.connect(self.showDirFunc)
         self.newDirButton.clicked.connect(self.newDirFunc)
+        self.treeView.clicked.connect(self.treeviewClicked)
+    
+    def treeviewClicked(self, index):
+        print index.data().toString()
         
     def newDirFunc(self):
         self.newDirNameDialog()
