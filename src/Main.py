@@ -11,6 +11,7 @@ except AttributeError:
 
 class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     currentDir = "."
+    newDirName = "new dir"
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
@@ -28,10 +29,20 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.newDirButton.clicked.connect(self.newDirFunc)
         
     def newDirFunc(self):
-        if create.createDir("new2", str(self.currentDir)):
-            print "new dir is created"
+        self.newDirNameDialog()
+        
+        if create.createDir(str(self.newDirName), str(self.currentDir) ):
+            print "new dir is created: '" + self.newDirName + "'"
         else:
             print "new dir can not be created"
+        
+    def newDirNameDialog(self):
+        
+        text, ok = QtGui.QInputDialog.getText(self, 'new dir', 'Enter dir name:')
+        
+        if ok:
+            self.newDirName = str(text)
+            print "new dir name is set to '" + self.newDirName + "'"
         
     def showDirFunc(self):
         newDir = self.txtLine.text()
