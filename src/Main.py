@@ -2,31 +2,48 @@ from PyQt4 import QtCore,QtGui
 import sys
 from ui import *
 from modules import *
+from genericpath import isdir
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class hwl(QtGui.QDialog,mainWindow.Ui_Dialog):
+class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
+    currentDir = "."
+    
     def __init__(self,parent=None):
-        super(hwl,self).__init__(parent)
+        super(WindowSource,self).__init__(parent)
         self.setupUi(self)
         self.connectActions()
+        print self.__class__.__name__ + " is initialized"
+        
     def main(self):
         self.showMaximized()
+        print "window is showed"
+        
     def connectActions(self):
         self.showDir.clicked.connect(self.showDirFunc)
         self.txtLine.returnPressed.connect(self.showDirFunc)
+        self.newDirButton.clicked.connect(self.newDirFunc)
+        
+    def newDirFunc(self):
+        if create.createDir("new2", str(self.currentDir)):
+            print "new dir is created"
+        else:
+            print "new dir can not be created"
         
     def showDirFunc(self):
-        self.root = self.fileSystemModel.setRootPath(self.txtLine.text())
-        self.treeView.setModel(self.fileSystemModel)
-        self.treeView.setRootIndex(self.root)
+        newDir = self.txtLine.text()
         
-    def myprint(self):
-        self.txtLine.setText('Python -- ')        
-        self.txtEdit.setText('This')
-#         self.lblShow.setText('is a test')
+        if(isdir(newDir)):
+            self.root = self.fileSystemModel.setRootPath(newDir)
+            self.treeView.setModel(self.fileSystemModel)
+            self.treeView.setRootIndex(self.root)
+            self.currentDir = newDir
+            print "current dir is now " + self.currentDir
+        else:
+            print newDir + " is not a directory"
         
     def mypwd(self):
         fdlist = ""
@@ -39,6 +56,6 @@ class hwl(QtGui.QDialog,mainWindow.Ui_Dialog):
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
-    hwl1 = hwl()
+    hwl1 = WindowSource()
     hwl1.main()
     sys.exit(app.exec_())

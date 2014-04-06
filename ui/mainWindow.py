@@ -13,11 +13,13 @@ class Ui_Dialog(object):
         
         self.treeView = QtGui.QTreeView(Dialog)
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
-        self.fileSystemModel.setReadOnly(False)
+        self.fileSystemModel.setReadOnly(True)
         self.root = self.fileSystemModel.setRootPath('.')
         self.treeView.setModel(self.fileSystemModel)
         self.treeView.setRootIndex(self.root)
         self.treeView.setMinimumWidth(Dialog.width())
+        print "treeview of dir is created"
+        
         self.verticalLayout = QtGui.QVBoxLayout(self.treeView)
         self.verticalLayout.setMargin(0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -36,6 +38,11 @@ class Ui_Dialog(object):
         self.showDir.setText(QtGui.QApplication.translate("Dialog", "show dir", None, QtGui.QApplication.UnicodeUTF8))
         self.showDir.setObjectName(_fromUtf8("showDir"))
         self.horizontalLayout.addWidget(self.showDir)
+        
+        self.newDirButton = QtGui.QPushButton(self.widget1)
+        self.newDirButton.setText(QtGui.QApplication.translate("Dialog", "new dir", None, QtGui.QApplication.UnicodeUTF8))
+        self.newDirButton.setObjectName(_fromUtf8("newDirButton"))
+        self.horizontalLayout.addWidget(self.newDirButton)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -54,6 +61,6 @@ if __name__ == "__main__":
     Dialog.showMaximized()
 #     Dialog.setFixedHeight(Dialog.height())
 #     Dialog.setFixedWidth(Dialog.width())
-    
+    print "dialog ui is created"
     
     sys.exit(app.exec_())

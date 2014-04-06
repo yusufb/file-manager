@@ -3,9 +3,9 @@ Created on Dec 24, 2013
 @author: yusuf
 '''
 
-def createDir(dirName="new"):
+def createDir(dirName="new", currentDir="."):
     import os
-    
+    os.chdir(currentDir)
     if not os.path.exists(dirName):
         os.makedirs(dirName)
         return True
