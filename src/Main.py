@@ -25,12 +25,16 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         
     def connectActions(self):
         self.showDir.clicked.connect(self.showDirFunc)
-        self.txtLine.returnPressed.connect(self.showDirFunc)
+        self.currentDirTxtLine.returnPressed.connect(self.showDirFunc)
         self.newDirButton.clicked.connect(self.newDirFunc)
         self.treeView.clicked.connect(self.treeviewClicked)
     
     def treeviewClicked(self, index):
-        print index.data().toString()
+        newPath = str(self.currentDir) + "/" + index.data().toString()
+        if isdir(newPath):
+            self.currentDir = newPath
+            print "current dir is '" + self.currentDir + "'"
+            self.currentDirTxtLine.setText(self.currentDir)
         
     def newDirFunc(self):
         self.newDirNameDialog()
@@ -49,7 +53,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             print "new dir name is set to '" + self.newDirName + "'"
         
     def showDirFunc(self):
-        newDir = self.txtLine.text()
+        newDir = self.currentDirTxtLine.text()
         
         if(isdir(newDir)):
             self.root = self.fileSystemModel.setRootPath(newDir)
@@ -66,7 +70,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             fdlist += fd[1] + " "
             print fd[1]
         
-        self.txtLine.setText( fdlist )
+        self.currentDirTxtLine.setText( fdlist )
         
         
 if __name__=='__main__':

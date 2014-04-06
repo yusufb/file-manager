@@ -1,1 +1,1 @@
-__all__ = ["mainWindow", "NewDirPopup"]
+__all__ = ["mainWindow"]

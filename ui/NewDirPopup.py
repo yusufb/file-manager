@@ -1,3 +1,5 @@
+from PyQt4 import QtCore,QtGui
+from src import Main
 '''
 Created on Apr 6, 2014
 @author: yusuf
@@ -5,44 +7,11 @@ Created on Apr 6, 2014
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys
-from PyQt4 import QtGui
-
-
-class Example(QtGui.QWidget):
-    
-    def __init__(self):
-        super(Example, self).__init__()
-        
-        self.initUI()
-        
-    def initUI(self):      
-
-        self.btn = QtGui.QPushButton('Dialog', self)
-        self.btn.move(20, 20)
-        self.btn.clicked.connect(self.showDialog)
-        
-        self.le = QtGui.QLineEdit(self)
-        self.le.move(130, 22)
-        
-        self.setGeometry(300, 300, 290, 150)
-        self.setWindowTitle('Input dialog')
-        self.show()
-        
-    def showDialog(self):
-        
-        text, ok = QtGui.QInputDialog.getText(self, 'Input Dialog', 
-            'Enter your name:')
-        
+class NewDirPop:
+    def newDirNameDialog(self, WindowSource):
+            
+        text, ok = QtGui.QInputDialog.getText(WindowSource, 'new dir', 'Enter dir name:')
+            
         if ok:
-            self.le.setText(str(text))
-        
-def main():
-    
-    app = QtGui.QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
+            WindowSource.newDirName = str(text)
+            print "new dir name is set to '" + WindowSource.newDirName + "'"
