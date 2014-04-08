@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+import sys
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -62,7 +63,7 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "Form", None))
+        Form.setWindowTitle(_translate("Form", "FTP Connection", None))
         self.label.setText(_translate("Form", "Host", None))
         self.label_2.setText(_translate("Form", "Port", None))
         self.label_3.setText(_translate("Form", "Username", None))
@@ -70,3 +71,16 @@ class Ui_Form(object):
         self.connectButton.setText(_translate("Form", "Connect", None))
         self.cancelButton.setText(_translate("Form", "Cancel", None))
 
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    Dialog = QtGui.QDialog()
+    ui = Ui_Form()
+    ui.setupUi(Dialog)
+
+    Dialog.setWindowFlags(QtCore.Qt.WindowMinMaxButtonsHint)
+    Dialog.show()
+    Dialog.setFixedHeight(Dialog.height())
+    Dialog.setFixedWidth(Dialog.width())
+    print "dialog ui is created"
+    
+    sys.exit(app.exec_())
