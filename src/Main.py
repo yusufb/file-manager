@@ -30,7 +30,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.treeView.clicked.connect(self.treeviewClicked)
     
     def callNewDir(self):
-        nd = newDir.newDir(self.currentDir)
+        newDir.newDir(self.currentDir)
     
     def treeviewClicked(self, index):
         newPath = str(self.currentDir) + "/" + index.data().toString()
