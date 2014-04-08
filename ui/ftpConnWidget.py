@@ -41,7 +41,7 @@ class Ui_Form(object):
         self.passwordTxt.setObjectName(_fromUtf8("passwordTxt"))
         self.label = QtGui.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(10, 10, 46, 13))
-        self.label.setObjectName(_fromUtf8("label"))
+        self.label.setObjectName(_fromUtf8("hostLabel"))
         self.label_2 = QtGui.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(10, 40, 46, 13))
         self.label_2.setObjectName(_fromUtf8("label_2"))
