@@ -3,7 +3,7 @@ import sys
 from ui import *
 from modules import *
 from genericpath import isdir
-import newDir
+from src import *
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -24,13 +24,16 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         print "window is showed"
         
     def connectActions(self):
-        self.showDir.clicked.connect(self.showDirFunc)
-        self.currentDirTxtLine.returnPressed.connect(self.showDirFunc)
+        self.showDir.clicked.connect(self.callShowDir)
+        self.currentDirTxtLine.returnPressed.connect(self.callShowDir)
         self.newDirButton.clicked.connect(self.callNewDir)
         self.treeView.clicked.connect(self.treeviewClicked)
     
     def callNewDir(self):
         newDir.newDir(self.currentDir)
+    
+    def callShowDir(self):
+        self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
     
     def treeviewClicked(self, index):
         newPath = str(self.currentDir) + "/" + index.data().toString()
@@ -39,20 +42,6 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             print "current dir is '" + self.currentDir + "'"
             self.currentDirTxtLine.setText(self.currentDir)
         
-
-        
-    def showDirFunc(self):
-        newDir = self.currentDirTxtLine.text()
-        
-        if(isdir(newDir)):
-            self.root = self.fileSystemModel.setRootPath(newDir)
-            self.treeView.setModel(self.fileSystemModel)
-            self.treeView.setRootIndex(self.root)
-            self.currentDir = newDir
-            print "current dir is now " + self.currentDir
-        else:
-            print newDir + " is not a directory"
-        
     def mypwd(self):
         fdlist = ""
         for fd in list.listFilesAndDirs():
@@ -60,7 +49,6 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             print fd[1]
         
         self.currentDirTxtLine.setText( fdlist )
-        
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
