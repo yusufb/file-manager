@@ -1,7 +1,6 @@
 from PyQt4 import QtCore,QtGui
 import sys
 from ui import *
-from modules import *
 from genericpath import isdir
 
 try:
@@ -42,14 +41,6 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             self.currentDir = newPath
             print "current dir is '" + self.currentDir + "'"
             self.currentDirTxtLine.setText(self.currentDir)
-        
-    def mypwd(self):
-        fdlist = ""
-        for fd in list.listFilesAndDirs():
-            fdlist += fd[1] + " "
-            print fd[1]
-        
-        self.currentDirTxtLine.setText( fdlist )
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)

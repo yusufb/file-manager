@@ -13,12 +13,14 @@ class showDir(Main.WindowSource):
             self.root = self.fileSystemModel.setRootPath(self.newDir)
             self.treeView.setModel(self.fileSystemModel)
             self.treeView.setRootIndex(self.root)
+            print "current dir is now " + self.newDir
             return self.newDir
-            print "current dir is now " + self.currentDir
         else:
             print self.newDir + " is not a directory"
             
     def __init__(self, currentDir):
         super(showDir, self).__init__(None)
         self.newDir = currentDir
+        self.setupUi(self)
         self.showDirFunc()
+        
