@@ -4,7 +4,6 @@ Created on Apr 8, 2014
 '''
 from PyQt4 import QtCore,QtGui
 from modules import create
-from src import *
 import Main
 
 class newDir(Main.WindowSource):

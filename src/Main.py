@@ -3,7 +3,6 @@ import sys
 from ui import *
 from modules import *
 from genericpath import isdir
-from src import *
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -30,9 +29,11 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.treeView.clicked.connect(self.treeviewClicked)
     
     def callNewDir(self):
+        import newDir
         newDir.newDir(self.currentDir)
     
     def callShowDir(self):
+        import showDir
         self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
     
     def treeviewClicked(self, index):
