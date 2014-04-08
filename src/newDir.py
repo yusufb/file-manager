@@ -12,12 +12,13 @@ class newDir(Main.WindowSource):
     currentDir = "."
     
     def newDirFunc(self):
-        self.newDirNameDialog()
         
-        if create.createDir(str(self.newDirName), str(self.currentDir) ):
-            print "new dir is created: '" + self.newDirName + "'"
-        else:
-            print "new dir can not be created"
+        if(self.newDirNameDialog()):
+        
+            if create.createDir(str(self.newDirName), str(self.currentDir) ):
+                print "new dir is created: '" + self.newDirName + "'"
+            else:
+                print "new dir can not be created"
         
     def newDirNameDialog(self):
         
@@ -26,6 +27,7 @@ class newDir(Main.WindowSource):
         if ok:
             self.newDirName = str(text)
             print "new dir name is set to '" + self.newDirName + "'"
+            return True
             
     def __init__(self, currentDir):
         super(newDir, self).__init__(None)
