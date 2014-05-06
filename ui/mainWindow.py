@@ -52,7 +52,12 @@ class Ui_Dialog(object):
         self.newFileButton = QtGui.QPushButton(self.widget1)
         self.newFileButton.setText(QtGui.QApplication.translate("Dialog", "new file", None, QtGui.QApplication.UnicodeUTF8))
         self.newFileButton.setObjectName(_fromUtf8("newFileButton"))
-        self.horizontalLayout.addWidget(self.newFileButton)
+        self.horizontalLayout.addWidget(self.newFileButton)        
+        
+        self.openFileButton = QtGui.QPushButton(self.widget1)
+        self.openFileButton.setText(QtGui.QApplication.translate("Dialog", "open", None, QtGui.QApplication.UnicodeUTF8))
+        self.openFileButton.setObjectName(_fromUtf8("openFileButton"))
+        self.horizontalLayout.addWidget(self.openFileButton)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

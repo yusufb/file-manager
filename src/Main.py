@@ -1,7 +1,7 @@
 from PyQt4 import QtCore,QtGui
 import sys
 from ui import *
-from genericpath import isdir
+from genericpath import isdir, isfile
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -10,6 +10,7 @@ except AttributeError:
 
 class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     currentDir = "."
+    clickedFile = ""
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
@@ -30,7 +31,16 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.treeView.clicked.connect(self.treeviewClicked)
         self.newFileButton.clicked.connect(self.callNewFile)
         self.parentDir.clicked.connect(self.showParentDir)
-        
+        self.openFileButton.clicked.connect(self.callOpenFile)
+
+    def callOpenFile(self):
+        print "to open"
+        import openFile
+        from os.path import isfile
+        toOpenFile = self.clickedFile
+        if(isfile(toOpenFile)):
+            openFile.openFile(toOpenFile)
+                
     def callNewFile(self):
         import newFile
         newFile.newFile(self.currentDir)
@@ -77,6 +87,8 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             print "current dir is '" + self.currentDir + "'"
             self.currentDirTxtLine.setText(self.currentDir)
             self.doShowDir()
+        elif isfile(newPath):
+            self.clickedFile = newPath
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
