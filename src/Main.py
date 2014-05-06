@@ -16,6 +16,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.setupUi(self)
         self.connectActions()
         print self.__class__.__name__ + " is initialized"
+        self.treeviewClicked(self.root)
         
     def main(self):
         #self.showMaximized()
@@ -50,6 +51,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             self.treeView.setRootIndex(self.root)
             self.currentDir = parentDir
             print "current dir is now " + self.currentDir
+            self.currentDirTxtLine.setText(self.currentDir)
         else:
             print parentDir + " is not a directory"
         
