@@ -18,12 +18,13 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         print self.__class__.__name__ + " is initialized"
         
     def main(self):
-        self.showMaximized()
+        #self.showMaximized()
+        self.show()
         print "window is showed"
         
     def connectActions(self):
-        self.showDir.clicked.connect(self.callShowDir)
-        self.currentDirTxtLine.returnPressed.connect(self.callShowDir)
+        self.showDir.clicked.connect(self.doShowDir)
+        self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
         self.newDirButton.clicked.connect(self.callNewDir)
         self.treeView.clicked.connect(self.treeviewClicked)
     
@@ -34,8 +35,22 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     def callShowDir(self):
         import showDir
         self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
+        
+    def doShowDir(self):
+        newDir = self.currentDirTxtLine.text()
+        
+        if(isdir(newDir)):
+            self.root = self.fileSystemModel.setRootPath(newDir)
+            self.treeView.setModel(self.fileSystemModel)
+            self.treeView.setRootIndex(self.root)
+            self.currentDir = newDir
+            print "current dir is now " + self.currentDir
+        else:
+            print newDir + " is not a directory"
     
     def treeviewClicked(self, index):
+        # ***
+        print self.fileSystemModel.filePath(index)
         newPath = str(self.currentDir) + "/" + index.data().toString()
         if isdir(newPath):
             self.currentDir = newPath
