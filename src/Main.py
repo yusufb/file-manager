@@ -27,6 +27,12 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
         self.newDirButton.clicked.connect(self.callNewDir)
         self.treeView.clicked.connect(self.treeviewClicked)
+        self.newFileButton.clicked.connect(self.callNewFile)
+        self.parentDir.clicked.connect(self.showParentDir)
+        
+    def callNewFile(self):
+        import newFile
+        newFile.newFile(self.currentDir)
     
     def callNewDir(self):
         import newDir
@@ -35,6 +41,17 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     def callShowDir(self):
         import showDir
         self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
+    
+    def showParentDir(self):
+        parentDir = str(self.currentDir).rsplit('/',1)[0]
+        if(isdir(parentDir)):
+            self.root = self.fileSystemModel.setRootPath(parentDir)
+            self.treeView.setModel(self.fileSystemModel)
+            self.treeView.setRootIndex(self.root)
+            self.currentDir = parentDir
+            print "current dir is now " + self.currentDir
+        else:
+            print parentDir + " is not a directory"
         
     def doShowDir(self):
         newDir = self.currentDirTxtLine.text()
@@ -51,11 +68,13 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     def treeviewClicked(self, index):
         # ***
         print self.fileSystemModel.filePath(index)
-        newPath = str(self.currentDir) + "/" + index.data().toString()
+        newPath = str(self.fileSystemModel.filePath(index))
+        print "new path is " + newPath
         if isdir(newPath):
             self.currentDir = newPath
             print "current dir is '" + self.currentDir + "'"
             self.currentDirTxtLine.setText(self.currentDir)
+            self.doShowDir()
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)

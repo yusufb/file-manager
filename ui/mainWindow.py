@@ -39,10 +39,20 @@ class Ui_Dialog(object):
         self.showDir.setObjectName(_fromUtf8("showDir"))
         self.horizontalLayout.addWidget(self.showDir)
         
+        self.parentDir = QtGui.QPushButton(self.widget1)
+        self.parentDir.setText(QtGui.QApplication.translate("Dialog", "..", None, QtGui.QApplication.UnicodeUTF8))
+        self.parentDir.setObjectName(_fromUtf8("parentDir"))
+        self.horizontalLayout.addWidget(self.parentDir)
+        
         self.newDirButton = QtGui.QPushButton(self.widget1)
         self.newDirButton.setText(QtGui.QApplication.translate("Dialog", "new dir", None, QtGui.QApplication.UnicodeUTF8))
         self.newDirButton.setObjectName(_fromUtf8("newDirButton"))
         self.horizontalLayout.addWidget(self.newDirButton)
+        
+        self.newFileButton = QtGui.QPushButton(self.widget1)
+        self.newFileButton.setText(QtGui.QApplication.translate("Dialog", "new file", None, QtGui.QApplication.UnicodeUTF8))
+        self.newFileButton.setObjectName(_fromUtf8("newFileButton"))
+        self.horizontalLayout.addWidget(self.newFileButton)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

@@ -1,6 +1,6 @@
 '''
 Created on Apr 8, 2014
-@author: utku
+@author: utku, yusuf
 '''
 from PyQt4 import QtCore,QtGui
 from genericpath import isdir
