@@ -28,7 +28,8 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.showDir.clicked.connect(self.doShowDir)
         self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
         self.newDirButton.clicked.connect(self.callNewDir)
-        self.treeView.clicked.connect(self.treeviewClicked)
+        #self.treeView.clicked.connect(self.treeviewClicked)
+        self.treeView.doubleClicked.connect(self.treeviewClicked)
         self.newFileButton.clicked.connect(self.callNewFile)
         self.parentDir.clicked.connect(self.showParentDir)
         self.openFileButton.clicked.connect(self.callOpenFile)
@@ -89,6 +90,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
             self.doShowDir()
         elif isfile(newPath):
             self.clickedFile = newPath
+            self.callOpenFile()
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
