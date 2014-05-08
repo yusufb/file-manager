@@ -85,7 +85,6 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         print "new path is " + newPath
         if isdir(newPath):
             self.currentDir = newPath
-            print "current dir is '" + self.currentDir + "'"
             self.currentDirTxtLine.setText(self.currentDir)
             self.doShowDir()
         elif isfile(newPath):

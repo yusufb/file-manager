@@ -12,7 +12,6 @@ class newFile(Main.WindowSource):
     
     def newFileFunc(self):
         if(self.newFileNameDialog()):
-            print ">",self.currentDir
             if create.createFile(self.currentDir + "/" + self.newFileName):
                 print "new file is created: '" + self.newFileName + "'"
             else:

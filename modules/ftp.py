@@ -37,7 +37,11 @@ def downloadFile(ftpConn,filePath,fileName):
         ftp.retrbinary('RETR '+fileName, file)  
         print "Download succesful"
     except ftplib.all_errors as e:
-        print('An error has occured during file upload:',e)        
+        print('An error has occured during file upload:',e)
+
+def testFTPparams(host, port, user, passwd):
+    print host, " - ", port, "- ", user, " - ", passwd
+    ftpConnection(host + ":" + port, user, passwd)
         
             
 downloadFile(ftpConnection("ftp.ygt.hol.es", "u255885439.pyhton", "123456"),"C:\\Users\ANIL\\Desktop\\order.xml","order.xml")
