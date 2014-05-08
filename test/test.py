@@ -9,4 +9,4 @@ if rename.rename("_r", "_r"):
 
 ''' print search.search("test2", "d", ".", True) '''
 
-print list.listFilesAndDirs()
+print "c:/asdasd/asdas/3434".rsplit('/')[-1]

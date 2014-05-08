@@ -11,6 +11,7 @@ except AttributeError:
 class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     currentDir = "."
     clickedFile = ""
+    clickedFileOrDir = ""
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
@@ -28,11 +29,20 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.showDir.clicked.connect(self.doShowDir)
         self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
         self.newDirButton.clicked.connect(self.callNewDir)
-        #self.treeView.clicked.connect(self.treeviewClicked)
+        self.treeView.clicked.connect(self.changeclickedFileOrDir)
         self.treeView.doubleClicked.connect(self.treeviewClicked)
         self.newFileButton.clicked.connect(self.callNewFile)
         self.parentDir.clicked.connect(self.showParentDir)
         self.openFileButton.clicked.connect(self.callOpenFile)
+        self.renameButton.clicked.connect(self.rename)
+        
+    def changeclickedFileOrDir(self, index):
+        self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
+        
+    def rename(self, index):
+        import renameFileDir
+        if len(self.clickedFileOrDir):
+            renameFileDir.renameFileDir(self.clickedFileOrDir)
 
     def callOpenFile(self):
         print "to open"

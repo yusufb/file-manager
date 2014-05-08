@@ -59,6 +59,11 @@ class Ui_Dialog(object):
         self.openFileButton.setObjectName(_fromUtf8("openFileButton"))
         self.horizontalLayout.addWidget(self.openFileButton)
 
+        self.renameButton = QtGui.QPushButton(self.widget1)
+        self.renameButton.setText(QtGui.QApplication.translate("Dialog", "rename", None, QtGui.QApplication.UnicodeUTF8))
+        self.renameButton.setObjectName(_fromUtf8("renameButton"))
+        self.horizontalLayout.addWidget(self.renameButton)
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
