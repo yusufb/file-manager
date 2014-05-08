@@ -11,9 +11,6 @@ class Ui_Dialog(object):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "File Manager", None, QtGui.QApplication.UnicodeUTF8))
         
-        Dialog.set_status_bar("test")
-
-        
         self.treeView = QtGui.QTreeView(Dialog)
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
         self.fileSystemModel.setReadOnly(True)
