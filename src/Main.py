@@ -34,14 +34,17 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.newFileButton.clicked.connect(self.callNewFile)
         self.parentDir.clicked.connect(self.showParentDir)
         self.openFileButton.clicked.connect(self.callOpenFile)
-        self.renameButton.clicked.connect(self.rename)
+        self.renameButton.clicked.connect(self.callRename)
+        self.deleteButton.clicked.connect(self.callDelete)
         
-    def changeclickedFileOrDir(self, index):
-        self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
+    def callDelete(self):
+        import deleteFileDir
+        if len(self.clickedFileOrDir) > 0:
+            deleteFileDir.deleteFileDir(self.clickedFileOrDir)
         
-    def rename(self, index):
+    def callRename(self):
         import renameFileDir
-        if len(self.clickedFileOrDir):
+        if len(self.clickedFileOrDir) > 0:
             renameFileDir.renameFileDir(self.clickedFileOrDir)
 
     def callOpenFile(self):
@@ -65,6 +68,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
     
     def showParentDir(self):
+        self.clickedFileOrDir = ""
         parentDir = str(self.currentDir).rsplit('/',1)[0]
         if(isdir(parentDir)):
             self.root = self.fileSystemModel.setRootPath(parentDir)
@@ -78,6 +82,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         
     def doShowDir(self):
         newDir = self.currentDirTxtLine.text()
+        self.clickedFileOrDir = ""
         
         if(isdir(newDir)):
             self.root = self.fileSystemModel.setRootPath(newDir)
@@ -100,6 +105,9 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         elif isfile(newPath):
             self.clickedFile = newPath
             self.callOpenFile()
+    
+    def changeclickedFileOrDir(self, index):
+        self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)

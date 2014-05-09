@@ -7,6 +7,7 @@ def deleteFile(filename):
     import os
     try:
         os.remove(filename)
+        return True
     except IOError as e:
         print('An error has occured during deleting file:', e.errno, e.strerror)
     
@@ -15,5 +16,6 @@ def deleteDir(dirname):
     import shutil
     try:
         shutil.rmtree(dirname)
+        return True
     except IOError as e:
         print('An error has occured during deleting directory:', e.errno, e.strerror)

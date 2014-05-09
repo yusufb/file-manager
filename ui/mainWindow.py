@@ -63,6 +63,11 @@ class Ui_Dialog(object):
         self.renameButton.setText(QtGui.QApplication.translate("Dialog", "rename", None, QtGui.QApplication.UnicodeUTF8))
         self.renameButton.setObjectName(_fromUtf8("renameButton"))
         self.horizontalLayout.addWidget(self.renameButton)
+        
+        self.deleteButton = QtGui.QPushButton(self.widget1)
+        self.deleteButton.setText(QtGui.QApplication.translate("Dialog", "X", None, QtGui.QApplication.UnicodeUTF8))
+        self.deleteButton.setObjectName(_fromUtf8("deleteButton"))
+        self.horizontalLayout.addWidget(self.deleteButton)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

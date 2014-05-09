@@ -13,7 +13,7 @@ class renameFileDir(Main.WindowSource):
     def renameFunc(self):
         if(self.renameDialog()):
             if rename.rename(self.currentFileName, self.newFileName):
-                print "file name changed from '", self.currentFileName, "' to '", self.newFileName, "'"
+                print "file name changed from '" + self.currentFileName + "' to '" + self.newFileName + "'"
             else:
                 print "name can not be changed"
         
