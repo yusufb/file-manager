@@ -37,6 +37,16 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         self.renameButton.clicked.connect(self.callRename)
         self.deleteButton.clicked.connect(self.callDelete)
         
+        self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
+        
+    def rightClickMenu(self, pos):
+        menu = QtGui.QMenu()
+        testAction = menu.addAction("Rename")
+        action = menu.exec_(self.treeView.mapToGlobal(pos))
+        if action == testAction:
+            self.callRename()
+                    
     def callDelete(self):
         import deleteFileDir
         if len(self.clickedFileOrDir) > 0:
@@ -108,6 +118,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     
     def changeclickedFileOrDir(self, index):
         self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
+        print self.clickedFileOrDir + " is clicked"
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
