@@ -2,6 +2,7 @@ from PyQt4 import QtCore,QtGui
 import sys
 from ui import *
 from genericpath import isdir, isfile
+from collections import OrderedDict
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -42,11 +43,20 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        testAction = menu.addAction("Rename")
+        actionsList = OrderedDict ( (('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete') ) )
+        actions = []
+        actionFunctions = []
+        
+        for k,v in actionsList.iteritems():
+            actions.append(menu.addAction(k))
+            actionFunctions.append(v)
+
         action = menu.exec_(self.treeView.mapToGlobal(pos))
-        if action == testAction:
-            self.callRename()
-                    
+        
+        for i in range(0, len(actions)):
+            if action == actions[i]:
+                getattr(self, actionFunctions[i])()
+        
     def callDelete(self):
         import deleteFileDir
         if len(self.clickedFileOrDir) > 0:
@@ -118,6 +128,9 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
     
     def changeclickedFileOrDir(self, index):
         self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
+        from genericpath import isfile
+        if isfile(self.clickedFileOrDir):
+            self.clickedFile = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
         
 if __name__=='__main__':
