@@ -43,7 +43,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        actionsList = OrderedDict ( (('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete') ) )
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete')))
         actions = []
         actionFunctions = []
         
@@ -64,8 +64,7 @@ class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
         
     def callRename(self):
         import renameFileDir
-        if len(self.clickedFileOrDir) > 0:
-            renameFileDir.renameFileDir(self.clickedFileOrDir)
+        renameFileDir.renameFileDir(self.clickedFileOrDir)
 
     def callOpenFile(self):
         print "to open"

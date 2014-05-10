@@ -3,14 +3,15 @@ Created on May 6, 2014
 @author: yusuf
 '''
 import Main, sys, subprocess, os
+from src import Utils
 
 class openFile(Main.WindowSource):
     toOpenFile = ""
     
     def openFileFunc(self):
-        if sys.platform == 'linux2':
+        if Utils.getOsName().lower() == "linux":
             subprocess.call(["xdg-open", self.toOpenFile])
-        else:
+        elif Utils.getOsName().lower() == "windows":
             os.startfile(self.toOpenFile)
         
 
