@@ -100,6 +100,13 @@ class Ui_Dialog(object):
         self.deleteButton.setText("Delete")
         self.deleteButton.setObjectName(_fromUtf8("deleteButton"))
         
+        self.fileTypeButton = QtGui.QAction(MainWindow)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/file-type-info.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.fileTypeButton.setIcon(icon7)
+        self.fileTypeButton.setText("File Type Info")
+        self.fileTypeButton.setObjectName(_fromUtf8("fileTypeButton"))
+        
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
         self.toolBar.addAction(self.parentDir)
@@ -107,6 +114,7 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.openFileButton)
         self.toolBar.addAction(self.renameButton)
         self.toolBar.addAction(self.deleteButton)
+        self.toolBar.addAction(self.fileTypeButton)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

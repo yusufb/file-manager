@@ -40,6 +40,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.openFileButton.triggered.connect(self.callOpenFile)
         self.renameButton.triggered.connect(self.callRename)
         self.deleteButton.triggered.connect(self.callDelete)
+        self.fileTypeButton.triggered.connect(self.callFileTypeInfo)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -59,7 +60,11 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         for i in range(0, len(actions)):
             if action == actions[i]:
                 getattr(self, actionFunctions[i])()
-        
+    
+    def callFileTypeInfo(self):
+        import fileTypeInfo
+        fileTypeInfo.fileTypeInfo(self.clickedFileOrDir)
+    
     def callDelete(self):
         import deleteFileDir
         if len(self.clickedFileOrDir) > 0:
