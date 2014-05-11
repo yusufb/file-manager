@@ -47,7 +47,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete')))
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo')))
         actions = []
         actionFunctions = []
         
