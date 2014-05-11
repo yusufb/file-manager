@@ -67,8 +67,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     
     def callDelete(self):
         import deleteFileDir
-        if len(self.clickedFileOrDir) > 0:
-            deleteFileDir.deleteFileDir(self.clickedFileOrDir)
+        deleteFileDir.deleteFileDir(self.currentDir + "/" + self.clickedFileOrDir)
         
     def callRename(self):
         import renameFileDir
