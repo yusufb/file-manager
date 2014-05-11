@@ -27,16 +27,19 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         print "window is showed"
         
     def connectActions(self):
+        
+        #new design: self.newDirButton.triggered.connect(self.callNewDir)
+        
         self.showDir.clicked.connect(self.doShowDir)
         self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
-        self.newDirButton.clicked.connect(self.callNewDir)
+        self.newDirButton.triggered.connect(self.callNewDir)
         self.treeView.clicked.connect(self.changeclickedFileOrDir)
         self.treeView.doubleClicked.connect(self.treeviewClicked)
-        self.newFileButton.clicked.connect(self.callNewFile)
-        self.parentDir.clicked.connect(self.showParentDir)
-        self.openFileButton.clicked.connect(self.callOpenFile)
-        self.renameButton.clicked.connect(self.callRename)
-        self.deleteButton.clicked.connect(self.callDelete)
+        self.newFileButton.triggered.connect(self.callNewFile)
+        self.parentDir.triggered.connect(self.showParentDir)
+        self.openFileButton.triggered.connect(self.callOpenFile)
+        self.renameButton.triggered.connect(self.callRename)
+        self.deleteButton.triggered.connect(self.callDelete)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)

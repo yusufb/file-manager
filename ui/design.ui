@@ -13,7 +13,58 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTreeView" name="treeView">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>70</y>
+      <width>301</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="treeView_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>70</y>
+      <width>301</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goToDirButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>20</y>
+      <width>41</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Go</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../resources/img/go-dir.png</normaloff>../resources/img/go-dir.png</iconset>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>20</y>
+      <width>601</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -40,11 +91,16 @@
    </attribute>
    <addaction name="actionNew_Directory"/>
    <addaction name="actionNew_File"/>
+   <addaction name="actionParent_Directory"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpen_File"/>
+   <addaction name="actionRename"/>
+   <addaction name="actionDelete"/>
   </widget>
   <action name="actionNew_Directory">
    <property name="icon">
     <iconset>
-     <normaloff>D:/workspace/file-manager/resources/img/new-dir.png</normaloff>D:/workspace/file-manager/resources/img/new-dir.png</iconset>
+     <normaloff>../resources/img/new-dir.png</normaloff>../resources/img/new-dir.png</iconset>
    </property>
    <property name="text">
     <string>New Directory</string>
@@ -56,13 +112,61 @@
   <action name="actionNew_File">
    <property name="icon">
     <iconset>
-     <normaloff>D:/workspace/file-manager/resources/img/new-file.png</normaloff>D:/workspace/file-manager/resources/img/new-file.png</iconset>
+     <normaloff>../resources/img/new-file.png</normaloff>../resources/img/new-file.png</iconset>
    </property>
    <property name="text">
     <string>New File</string>
    </property>
    <property name="toolTip">
     <string>Create new file</string>
+   </property>
+  </action>
+  <action name="actionParent_Directory">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/img/up-dir.png</normaloff>../resources/img/up-dir.png</iconset>
+   </property>
+   <property name="text">
+    <string>Parent Directory</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to parent directory</string>
+   </property>
+  </action>
+  <action name="actionOpen_File">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/img/open-file.png</normaloff>../resources/img/open-file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open File</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the selected file</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/img/rename.png</normaloff>../resources/img/rename.png</iconset>
+   </property>
+   <property name="text">
+    <string>rename</string>
+   </property>
+   <property name="toolTip">
+    <string>Rename file/folder</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/img/delete.png</normaloff>../resources/img/delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete file/directory</string>
    </property>
   </action>
  </widget>
