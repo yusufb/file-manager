@@ -1,6 +1,6 @@
 from PyQt4 import QtCore,QtGui
 import sys
-from ui import *
+from ui import design
 from genericpath import isdir, isfile
 from collections import OrderedDict
 
@@ -9,7 +9,7 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class WindowSource(QtGui.QDialog,mainWindow.Ui_Dialog):
+class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     currentDir = "."
     clickedFile = ""
     clickedFileOrDir = ""
