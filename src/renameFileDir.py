@@ -5,6 +5,7 @@ Created on May 8, 2014
 from PyQt4 import QtGui
 from modules import rename
 import Main
+from src import Utils
 
 class renameFileDir(Main.WindowSource):
     newFileName = ''
@@ -12,14 +13,14 @@ class renameFileDir(Main.WindowSource):
     
     def renameFunc(self):
         if(self.renameDialog()):
-            if rename.rename(self.currentFileName, self.newFileName):
+            if rename.rename(self.currentFileName, Utils.getParentDir(str(self.currentFileName)) + "/" + self.newFileName):
                 print "file name changed from '" + self.currentFileName + "' to '" + self.newFileName + "'"
             else:
                 print "name can not be changed"
         
     def renameDialog(self):
         
-        text, ok = QtGui.QInputDialog.getText(self, 'new name', 'Enter the new name:',  QtGui.QLineEdit.Normal , self.currentFileName)
+        text, ok = QtGui.QInputDialog.getText(self, 'new name', 'Enter the new name:',  QtGui.QLineEdit.Normal , Utils.getFileNameFromFullPath(str(self.currentFileName)))
         
         if ok:
             self.newFileName = str(text)

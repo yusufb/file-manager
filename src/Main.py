@@ -71,7 +71,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def callRename(self):
         import renameFileDir
-        renameFileDir.renameFileDir(self.clickedFileOrDir)
+        renameFileDir.renameFileDir(self.currentDir + "/" + self.clickedFileOrDir)
 
     def callOpenFile(self):
         print "to open"
