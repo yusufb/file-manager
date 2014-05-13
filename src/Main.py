@@ -139,6 +139,9 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.clickedFile = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
         
+        import preview
+        preview.preview(self.currentDir + "/" + self.clickedFileOrDir)
+        
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
     hwl1 = WindowSource()
