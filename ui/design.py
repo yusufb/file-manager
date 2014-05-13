@@ -18,12 +18,12 @@ class Ui_Dialog(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.setWindowTitle(QtGui.QApplication.translate("Dialog", "File Manager", None, QtGui.QApplication.UnicodeUTF8))
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1366, 768)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         
         self.treeView = QtGui.QTreeView(self.centralwidget)
-        self.treeView.setGeometry(QtCore.QRect(80, 70, 301, 461))
+        self.treeView.setGeometry(QtCore.QRect(80, 70, 440, 461))
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
         self.fileSystemModel.setReadOnly(True)
@@ -32,7 +32,7 @@ class Ui_Dialog(object):
         self.treeView.setRootIndex(self.root)
         
         self.treeView_2 = QtGui.QTreeView(self.centralwidget)
-        self.treeView_2.setGeometry(QtCore.QRect(430, 70, 301, 461))
+        self.treeView_2.setGeometry(QtCore.QRect(550, 70, 440, 461))
         self.treeView_2.setObjectName(_fromUtf8("treeView_2"))
         self.showDir = QtGui.QPushButton(self.centralwidget)
         self.showDir.setGeometry(QtCore.QRect(690, 20, 41, 24))
@@ -132,8 +132,8 @@ if __name__ == "__main__":
     Dialog.setWindowFlags(QtCore.Qt.WindowMinMaxButtonsHint)
     Dialog.show()
 #     Dialog.showMaximized()
-#     Dialog.setFixedHeight(Dialog.height())
-#     Dialog.setFixedWidth(Dialog.width())
+    Dialog.setFixedHeight(Dialog.height())
+    Dialog.setFixedWidth(Dialog.width())
     print "dialog ui is created"
     
     sys.exit(app.exec_())
