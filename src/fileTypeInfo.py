@@ -22,7 +22,7 @@ class fileTypeInfo(Main.WindowSource):
             
             for item in data:
                 try:
-                    if item["ext"] == Utils.getFileExtension(self.fileName):
+                    if item["ext"] == Utils.getFileExtension(self.fileName).lower():
                         extData = item
                         pprint(extData)
                         found = True

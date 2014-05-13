@@ -115,7 +115,31 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.renameButton)
         self.toolBar.addAction(self.deleteButton)
         self.toolBar.addAction(self.fileTypeButton)
+        
+        
+        ######################
+        previewFileName = "../resources/img/blank.png"
+        self.imageLabel = QtGui.QLabel(self.centralwidget)
+        self.imageLabel.setObjectName(_fromUtf8("imageLabel"))
+        self.imageLabel.setBackgroundRole(QtGui.QPalette.Base)
+        self.imageLabel.setSizePolicy(QtGui.QSizePolicy.Ignored, QtGui.QSizePolicy.Ignored)
+        self.imageLabel.setScaledContents(True)
 
+        image = QtGui.QImage(previewFileName)
+        self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(image))
+        self.imageLabel.adjustSize()
+        self.imageLabel.resize(200, 200*self.imageLabel.height()/self.imageLabel.width())
+        
+        self.scrollArea = QtGui.QScrollArea(self.centralwidget)
+        self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
+        self.scrollArea.setGeometry(QtCore.QRect(1100, 220, 202, 200*self.imageLabel.height()/self.imageLabel.width()+2))
+        self.scrollArea.setBackgroundRole(QtGui.QPalette.Dark)
+        self.scrollArea.setWidget(self.imageLabel)
+        self.scrollArea.setVisible(False)
+        
+        MainWindow.setCentralWidget(self.centralwidget)
+        ##########################
+        
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

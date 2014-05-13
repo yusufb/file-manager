@@ -16,21 +16,20 @@ class preview(Main.WindowSource, design.Ui_Dialog):
     fileName = ''
     imgExts = ['png','jpg','jpeg','gif','tif','tiff','bmp']
     
-    def showPreview(self):
-        if self.checkExts():
-            self.createImagePane()
-        else:
-            print 'hayir'
+    def showPreview(self, fullPath):
+        fileName = Utils.getFileNameFromFullPath(str(fullPath))
+        if self.checkExts(fileName):
+            print "file preview is showed"
+            return True
         
-    def checkExts(self):
-        return Utils.getFileExtension((str(self.fullPath)).lower()) in self.imgExts
+    def checkExts(self, fileName):
+        return Utils.getFileExtension((fileName).lower()) in self.imgExts
     
-    def createImagePane(self):
         
         
-    def __init__(self, fullPath):
+    def __init__(self):
         super(preview, self).__init__(None)
-        self.fullPath = fullPath
-        self.fileName = Utils.getFileNameFromFullPath(str(fullPath))
-        self.showPreview()
+        #self.fullPath = fullPath
+        #self.fileName = Utils.getFileNameFromFullPath(str(fullPath))
+        #self.showPreview(self.fileName)
         

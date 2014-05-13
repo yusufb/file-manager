@@ -10,7 +10,7 @@ def getParentDir(currentDir):
 
 def getFileExtension(fileName):
     ext = fileName.rsplit('.')[-1]
-    if len(ext)>0 and len(fileName.rsplit('.',1)[0])>0 and "." in fileName and isfile(fileName):
+    if len(ext)>0 and len(fileName.rsplit('.',1)[0])>0 and "." in fileName:
         return ext
     else:
         return False

@@ -21,6 +21,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         print self.__class__.__name__ + " is initialized"
         self.treeviewClicked(self.root)
         
+        
     def main(self):
         #self.showMaximized()
         self.show()
@@ -44,6 +45,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
+        
         
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
@@ -101,7 +103,6 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.treeView.setModel(self.fileSystemModel)
             self.treeView.setRootIndex(self.root)
             self.currentDir = parentDir
-            print "current dir is now " + self.currentDir
             self.currentDirTxtLine.setText(self.currentDir)
         else:
             print parentDir + " is not a directory"
@@ -115,7 +116,6 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.treeView.setModel(self.fileSystemModel)
             self.treeView.setRootIndex(self.root)
             self.currentDir = newDir
-            print "current dir is now " + self.currentDir
         else:
             print newDir + " is not a directory"
     
@@ -139,8 +139,16 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.clickedFile = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
         
-        import preview
-        preview.preview(self.currentDir + "/" + self.clickedFileOrDir)
+        from preview import preview
+        preImg = preview()
+        if preImg.showPreview(self.currentDir + "/" + self.clickedFileOrDir):
+            self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(QtGui.QImage(self.currentDir + "/" + self.clickedFileOrDir)))
+            self.imageLabel.setVisible(True)
+            self.scrollArea.setVisible(True)
+        else:
+            self.imageLabel.setVisible(False)
+            self.scrollArea.setVisible(False)
+            
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
