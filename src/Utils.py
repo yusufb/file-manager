@@ -3,13 +3,14 @@ Created on May 6, 2014
 @author: yusuf
 '''
 import platform
+from os.path import isfile
 
 def getParentDir(currentDir):
     return currentDir.rsplit('/',1)[0]
 
 def getFileExtension(fileName):
     ext = fileName.rsplit('.')[-1]
-    if len(ext)>0 and len(fileName.rsplit('.',1)[0])>0 and "." in fileName:
+    if len(ext)>0 and len(fileName.rsplit('.',1)[0])>0 and "." in fileName and isfile(fileName):
         return ext
     else:
         return False
