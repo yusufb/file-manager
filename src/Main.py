@@ -152,6 +152,11 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.clickedFileOrDir = ""
         
         if(isdir(newDir)):
+            '''
+            #filtering files:
+            self.fileSystemModel.setNameFilters(["*.py"])     
+            self.fileSystemModel.setNameFilterDisables(False);
+            '''
             self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(newDir)
             self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
             self.treeViews[self.activeTreeview].setRootIndex(self.roots[self.activeTreeview])
