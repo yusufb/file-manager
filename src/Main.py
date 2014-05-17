@@ -171,8 +171,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def changeclickedFileOrDir(self, index):
         self.clickedFileOrDir = str(self.fileSystemModels[self.activeTreeview].filePath(index)).rsplit('/')[-1]
         from genericpath import isfile
-        if isfile(self.clickedFileOrDir):
-            self.clickedFile = self.clickedFileOrDir
+        if isfile(self.currentDir + "/" + self.clickedFileOrDir):
+            self.clickedFile = self.currentDir + "/" + self.clickedFileOrDir
         elif isdir(self.clickedFileOrDir):
             self.currentDir = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
