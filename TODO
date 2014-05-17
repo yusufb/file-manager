@@ -5,7 +5,7 @@ show path with clickable directory links
 file / dir tagging
 online file type info search
 tab support ?
-bookmark freq used files/dirs
+bookmark freq used files/dirs(ftpConn gibi widget yap, path al koy, bir de name alanı(default ismi dosya adı olacak), json'da var mı kontrolu)
 hide&show second pane
 text editor
 text file analysis? (letter, word, line#)

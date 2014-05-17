@@ -56,6 +56,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.renameButton.triggered.connect(self.callRename)
         self.deleteButton.triggered.connect(self.callDelete)
         self.fileTypeButton.triggered.connect(self.callFileTypeInfo)
+        self.bookmarkButton.triggered.connect(self.callAddToBookmarks)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -72,7 +73,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo')))
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
         actions = []
         actionFunctions = []
         
@@ -89,6 +90,11 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def callFileTypeInfo(self):
         import fileTypeInfo
         fileTypeInfo.fileTypeInfo(self.clickedFileOrDir)
+        
+    def callAddToBookmarks(self):
+        import addToBookmarks
+        addToBookmarks.addToBookmarks(self.currentDir + "/" + self.clickedFileOrDir)
+        
     
     def callDelete(self):
         import deleteFileDir

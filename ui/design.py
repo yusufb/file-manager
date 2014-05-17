@@ -122,6 +122,13 @@ class Ui_Dialog(object):
         self.fileTypeButton.setText("File Type Info")
         self.fileTypeButton.setObjectName(_fromUtf8("fileTypeButton"))
         
+        self.bookmarkButton = QtGui.QAction(MainWindow)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark_add.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bookmarkButton.setIcon(icon8)
+        self.bookmarkButton.setText("Add to Bookmarks")
+        self.bookmarkButton.setObjectName(_fromUtf8("bookmarkButton"))
+        
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
         self.toolBar.addAction(self.parentDir)
@@ -130,6 +137,7 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.renameButton)
         self.toolBar.addAction(self.deleteButton)
         self.toolBar.addAction(self.fileTypeButton)
+        self.toolBar.addAction(self.bookmarkButton)
         
         
         ######################
