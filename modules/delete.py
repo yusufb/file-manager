@@ -6,7 +6,7 @@ Created on Dec 25, 2013
 def deleteFile(filename):
     import os
     try:
-        os.remove(filename)
+        os.remove(str(filename))
         return True
     except IOError as e:
         print('An error has occured during deleting file:', e.errno, e.strerror)
@@ -15,7 +15,7 @@ def deleteFile(filename):
 def deleteDir(dirname):
     import shutil
     try:
-        shutil.rmtree(dirname)
+        shutil.rmtree(str(dirname))
         return True
     except IOError as e:
         print('An error has occured during deleting directory:', e.errno, e.strerror)

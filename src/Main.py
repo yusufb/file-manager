@@ -65,6 +65,10 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def changeActiveTreeview(self, i):
         self.activeTreeview = i
+        if i==0:
+            self.currentDir = self.currentDirTxtLine.text()
+        elif i==1:
+            self.currentDir = self.currentDirTxtLine2.text()
             
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
