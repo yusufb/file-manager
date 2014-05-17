@@ -14,7 +14,7 @@ except AttributeError:
 class preview(Main.WindowSource, design.Ui_Dialog):
     fullPath = ''
     fileName = ''
-    imgExts = ['png','jpg','jpeg','gif','tif','tiff','bmp']
+    imgExts = ['png','jpg','jpeg','gif','tif','tiff','bmp', 'ico']
     
     def showPreview(self, fullPath):
         fileName = Utils.getFileNameFromFullPath(str(fullPath))

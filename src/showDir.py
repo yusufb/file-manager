@@ -12,9 +12,11 @@ class showDir(Main.WindowSource,QtGui.QDialog,mainWindow.Ui_Dialog):
     def showDirFunc(self):
         if(isdir(self.newDir)):
             self.setupUi(self)
-            self.root = self.fileSystemModel.setRootPath(self.newDir)
-            self.treeView.setModel(self.fileSystemModel)
-            self.treeView.setRootIndex(self.root)
+            
+            self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(self.newDir)
+            self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
+            self.treeViews[self.activeTreeview].setRootIndex(self.roots[self.activeTreeview])
+            
             self.setupUi(self)
             print "current dir is now " + self.newDir
             return self.newDir

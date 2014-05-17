@@ -13,14 +13,21 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     currentDir = "."
     clickedFile = ""
     clickedFileOrDir = ""
+    activeTreeview = 0
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
         self.setupUi(self)
         self.connectActions()
         print self.__class__.__name__ + " is initialized"
-        self.treeviewClicked(self.root)
         
+        self.treeViews = [ self.treeView, self.treeView_2 ]
+        self.fileSystemModels = [ self.fileSystemModel, self.fileSystemModel2 ]
+        self.roots = [ self.root, self.root2 ]
+        
+        
+        self.treeviewClicked(self.root)
+        self.currentDirTxtLine2.setText(self.currentDir)
         
     def main(self):
         #self.showMaximized()
@@ -29,13 +36,20 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def connectActions(self):
         
-        #new design: self.newDirButton.triggered.connect(self.callNewDir)
-        
-        self.showDir.clicked.connect(self.doShowDir)
-        self.currentDirTxtLine.returnPressed.connect(self.doShowDir)
+        #self.showDir.clicked.connect(self.doShowDir)
+        self.currentDirTxtLine.returnPressed.connect(lambda: self.doShowDir(0))
+        self.currentDirTxtLine2.returnPressed.connect(lambda: self.doShowDir(1))
         self.newDirButton.triggered.connect(self.callNewDir)
+        
+        self.treeView.clicked.connect(lambda: self.changeActiveTreeview(0))
+        self.treeView_2.clicked.connect(lambda: self.changeActiveTreeview(1))
         self.treeView.clicked.connect(self.changeclickedFileOrDir)
+        self.treeView_2.clicked.connect(self.changeclickedFileOrDir)
+
+        
         self.treeView.doubleClicked.connect(self.treeviewClicked)
+        self.treeView_2.doubleClicked.connect(self.treeviewClicked)
+        
         self.newFileButton.triggered.connect(self.callNewFile)
         self.parentDir.triggered.connect(self.showParentDir)
         self.openFileButton.triggered.connect(self.callOpenFile)
@@ -46,7 +60,12 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
         
+        self.treeView_2.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.treeView_2.customContextMenuRequested.connect(self.rightClickMenu)
         
+    def changeActiveTreeview(self, i):
+        self.activeTreeview = i
+            
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
         actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo')))
@@ -57,7 +76,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             actions.append(menu.addAction(k))
             actionFunctions.append(v)
 
-        action = menu.exec_(self.treeView.mapToGlobal(pos))
+        action = menu.exec_(self.treeViews[self.activeTreeview].mapToGlobal(pos))
         
         for i in range(0, len(actions)):
             if action == actions[i]:
@@ -93,50 +112,65 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     
     def callShowDir(self):
         import showDir
-        self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
+        if self.activeTreeview==0:
+            self.currentDir = showDir.showDir(self.currentDirTxtLine.text())
+        elif self.activeTreeview==1:
+            self.currentDir = showDir.showDir(self.currentDirTxtLine2.text())
     
     def showParentDir(self):
         self.clickedFileOrDir = ""
         parentDir = str(self.currentDir).rsplit('/',1)[0]
         if(isdir(parentDir)):
-            self.root = self.fileSystemModel.setRootPath(parentDir)
-            self.treeView.setModel(self.fileSystemModel)
-            self.treeView.setRootIndex(self.root)
+            self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(parentDir)
+            self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
+            self.treeViews[self.activeTreeview].setRootIndex(self.roots[self.activeTreeview])
             self.currentDir = parentDir
-            self.currentDirTxtLine.setText(self.currentDir)
+            if self.activeTreeview==0:
+                self.currentDirTxtLine.setText(self.currentDir)
+            elif self.activeTreeview==1:
+                self.currentDirTxtLine2.setText(self.currentDir)
         else:
             print parentDir + " is not a directory"
         
-    def doShowDir(self):
-        newDir = self.currentDirTxtLine.text()
+    def doShowDir(self, tv):
+        self.activeTreeview = tv
+        if self.activeTreeview==0:
+            newDir = self.currentDirTxtLine.text()
+        elif self.activeTreeview==1:
+            newDir = self.currentDirTxtLine2.text()
+            
         self.clickedFileOrDir = ""
         
         if(isdir(newDir)):
-            self.root = self.fileSystemModel.setRootPath(newDir)
-            self.treeView.setModel(self.fileSystemModel)
-            self.treeView.setRootIndex(self.root)
+            self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(newDir)
+            self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
+            self.treeViews[self.activeTreeview].setRootIndex(self.roots[self.activeTreeview])
             self.currentDir = newDir
         else:
             print newDir + " is not a directory"
     
     def treeviewClicked(self, index):
-        # ***
-        print self.fileSystemModel.filePath(index)
-        newPath = str(self.fileSystemModel.filePath(index))
+        print "> " + self.fileSystemModels[self.activeTreeview].filePath(index)
+        newPath = str(self.fileSystemModels[self.activeTreeview].filePath(index))
         print "new path is " + newPath
         if isdir(newPath):
             self.currentDir = newPath
-            self.currentDirTxtLine.setText(self.currentDir)
-            self.doShowDir()
+            if self.activeTreeview==0:
+                self.currentDirTxtLine.setText(self.currentDir)
+            elif self.activeTreeview==1:
+                self.currentDirTxtLine2.setText(self.currentDir)
+            self.doShowDir(self.activeTreeview)
         elif isfile(newPath):
             self.clickedFile = newPath
             self.callOpenFile()
     
     def changeclickedFileOrDir(self, index):
-        self.clickedFileOrDir = str(self.fileSystemModel.filePath(index)).rsplit('/')[-1]
+        self.clickedFileOrDir = str(self.fileSystemModels[self.activeTreeview].filePath(index)).rsplit('/')[-1]
         from genericpath import isfile
         if isfile(self.clickedFileOrDir):
             self.clickedFile = self.clickedFileOrDir
+        elif isdir(self.clickedFileOrDir):
+            self.currentDir = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
         
         from preview import preview

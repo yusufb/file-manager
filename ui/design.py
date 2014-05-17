@@ -23,7 +23,7 @@ class Ui_Dialog(object):
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         
         self.treeView = QtGui.QTreeView(self.centralwidget)
-        self.treeView.setGeometry(QtCore.QRect(80, 70, 440, 461))
+        self.treeView.setGeometry(QtCore.QRect(80, 60, 440, 461))
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
         self.fileSystemModel.setReadOnly(True)
@@ -32,8 +32,15 @@ class Ui_Dialog(object):
         self.treeView.setRootIndex(self.root)
         
         self.treeView_2 = QtGui.QTreeView(self.centralwidget)
-        self.treeView_2.setGeometry(QtCore.QRect(550, 70, 440, 461))
+        self.treeView_2.setGeometry(QtCore.QRect(550, 60, 440, 461))
         self.treeView_2.setObjectName(_fromUtf8("treeView_2"))
+        self.fileSystemModel2 = QtGui.QFileSystemModel(self.treeView_2)
+        self.fileSystemModel2.setReadOnly(True)
+        self.root2 = self.fileSystemModel2.setRootPath('.')
+        self.treeView_2.setModel(self.fileSystemModel2)
+        self.treeView_2.setRootIndex(self.root2)
+        
+        '''
         self.showDir = QtGui.QPushButton(self.centralwidget)
         self.showDir.setGeometry(QtCore.QRect(690, 20, 41, 24))
         icon = QtGui.QIcon()
@@ -41,9 +48,17 @@ class Ui_Dialog(object):
         self.showDir.setIcon(icon)
         self.showDir.setFlat(False)
         self.showDir.setObjectName(_fromUtf8("showDir"))
+        '''
+        
         self.currentDirTxtLine = QtGui.QLineEdit(self.centralwidget)
-        self.currentDirTxtLine.setGeometry(QtCore.QRect(80, 20, 601, 24))
+        self.currentDirTxtLine.setGeometry(QtCore.QRect(80, 20, 440, 24))
         self.currentDirTxtLine.setObjectName(_fromUtf8("currentDirTxtLine"))
+        
+        self.currentDirTxtLine2 = QtGui.QLineEdit(self.centralwidget)
+        self.currentDirTxtLine2.setGeometry(QtCore.QRect(550, 20, 440, 24))
+        self.currentDirTxtLine2.setObjectName(_fromUtf8("currentDirTxtLine2"))
+        
+        
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
