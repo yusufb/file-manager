@@ -22,7 +22,7 @@ class Ui_Dialog(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         
-        self.treeView = QtGui.QTreeView(self.centralwidget)
+        self.treeView = QtGui.QListView(self.centralwidget)
         self.treeView.setGeometry(QtCore.QRect(80, 60, 440, 461))
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
@@ -31,7 +31,7 @@ class Ui_Dialog(object):
         self.treeView.setModel(self.fileSystemModel)
         self.treeView.setRootIndex(self.root)
         
-        self.treeView_2 = QtGui.QTreeView(self.centralwidget)
+        self.treeView_2 = QtGui.QListView(self.centralwidget)
         self.treeView_2.setGeometry(QtCore.QRect(550, 60, 440, 461))
         self.treeView_2.setObjectName(_fromUtf8("treeView_2"))
         self.fileSystemModel2 = QtGui.QFileSystemModel(self.treeView_2)
