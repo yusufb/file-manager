@@ -94,7 +94,6 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def callAddToBookmarks(self):
         import addToBookmarks
         addToBookmarks.addToBookmarks(self.currentDir + "/" + self.clickedFileOrDir)
-        
     
     def callDelete(self):
         import deleteFileDir
