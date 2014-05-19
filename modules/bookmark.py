@@ -13,11 +13,11 @@ def addToBookmarks(jsonfile, path, name):
         print 'already in bookmarks'
     else:
         with open(jsonfile, 'a') as datafile:
-            json.dump(createJSONObject(path, name), datafile)
+            json.dump(createJSONObject(jsonfile, path, name), datafile)
             print 'added to bookmarks'
 
-def createJSONObject(path, name):
-    data = {'id':idGenerator(), 'path':str(path), 'name':name}
+def createJSONObject(jsonfile, path, name):
+    data = {'id':idGenerator(jsonfile), 'path':str(path), 'name':name}
     return data
 
 def readBookmarks(jsonFile):
@@ -39,6 +39,9 @@ def showAllBookmarks(jsonFile):
     for index in range(len(jsonObjj)):
         print jsonObjj[index]['name'] +' - '+ jsonObjj[index]['path']
     
-def idGenerator():
-    id = random.randint(0,50)
-    return id
+def idGenerator(jsonFile):
+    jsonObjj = readBookmarks(jsonFile)
+    if jsonObjj != []:
+        return jsonObjj[len(jsonObjj)-1]['id'] + 1
+    else:
+        return 0
