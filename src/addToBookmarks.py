@@ -18,10 +18,11 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
     infoFile = "../resources/data/bookmarks.json"
     fullPath = ""
     
-    def connectAction(self):
+    def testFunction(self):
         print 'enter action'
-        self.path.setText('asdsa')
-        self.addButton.clicked.connect(self.add())
+        
+    def closeDialog(self):
+        self.dialog.close()
         
     def add(self):
         #bookmark.readBookmarks(self.infoFile)
@@ -30,14 +31,23 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
         
     def showBookmarkDialog(self):
         dialog = QtGui.QDialog()
+        self.dialog = dialog
         dialog.ui = bookmarkUI.Ui_Form()
         dialog.ui.setupUi(dialog)
+        
+        #passing parameter
+        dialog.ui.path.setText(self.fullPath)
+        #calling function
+        dialog.ui.addButton.clicked.connect(self.testFunction)
+        dialog.ui.cancelButton.clicked.connect(self.closeDialog)
+        
+        
         dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         dialog.exec_()
+        
         
     def __init__(self, fullPath):
         super(addToBookmarks, self).__init__(None)
         self.fullPath = fullPath
-        self.connectAction()
         self.showBookmarkDialog()
 
