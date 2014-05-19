@@ -48,7 +48,6 @@ class Ui_Form(object):
         #self.addButton.clicked.connect(self.connectFTP)
         self.cancelButton.setGeometry(QtCore.QRect(0, 140, 81, 23))
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
     

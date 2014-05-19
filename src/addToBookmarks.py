@@ -17,16 +17,15 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
 
     infoFile = "../resources/data/bookmarks.json"
     fullPath = ""
+    bookmarkName = ''
     
-    def testFunction(self):
-        print 'enter action'
-        
     def closeDialog(self):
         self.dialog.close()
         
     def add(self):
         #bookmark.readBookmarks(self.infoFile)
         #bookmark.showAllBookmarks(self.infoFile)
+        print str(self.bookmarkName)
         bookmark.addToBookmarks(self.infoFile, str(self.fullPath), 'utku')
         
     def showBookmarkDialog(self):
@@ -38,7 +37,8 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
         #passing parameter
         dialog.ui.path.setText(self.fullPath)
         #calling function
-        dialog.ui.addButton.clicked.connect(self.testFunction)
+       
+        dialog.ui.addButton.clicked.connect(self.add)
         dialog.ui.cancelButton.clicked.connect(self.closeDialog)
         
         
