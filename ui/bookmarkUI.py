@@ -9,7 +9,6 @@
 
 from PyQt4 import QtCore, QtGui
 import sys
-from modules import bookmark
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -53,10 +52,10 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
     
-    def addToBookmark(self):
-        if bookmark.checkBookmarkList() != True:
-            bookmark.addToBookmarks(self.path.text(), self.name.text())
-            Dialog.close();
+    #def addToBookmark(self):
+     #   addToBookmarks.addToBookmarks.add(self);
+      #  Dialog.close()
+
         
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Add to Bookmarks", None))
