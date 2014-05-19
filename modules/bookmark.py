@@ -10,11 +10,11 @@ def checkBookmarkList(path, filePath):
     
 def addToBookmarks(jsonfile, path, name):
     if checkBookmarkList(path, jsonfile):
-        print 'zaten var haci'
+        print 'already in bookmarks'
     else:
         with open(jsonfile, 'a') as datafile:
             json.dump(createJSONObject(path, name), datafile)
-            print 'Bookmarka eklendi'
+            print 'added to bookmarks'
 
 def createJSONObject(path, name):
     data = {'id':idGenerator(), 'path':str(path), 'name':name}

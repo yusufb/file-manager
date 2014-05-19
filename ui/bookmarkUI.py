@@ -46,7 +46,7 @@ class Ui_Form(object):
         self.addButton.setGeometry(QtCore.QRect(80, 140, 91, 23))
         self.addButton.setObjectName(_fromUtf8("addButton"))
         self.cancelButton = QtGui.QPushButton(Form)
-        self.addButton.clicked.connect(self.connectFTP)
+        #self.addButton.clicked.connect(self.connectFTP)
         self.cancelButton.setGeometry(QtCore.QRect(0, 140, 81, 23))
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
 
