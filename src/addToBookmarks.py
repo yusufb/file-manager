@@ -25,25 +25,25 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
     def add(self):
         #bookmark.readBookmarks(self.infoFile)
         #bookmark.showAllBookmarks(self.infoFile)
-        print str(self.bookmarkName)
-        bookmark.addToBookmarks(self.infoFile, str(self.fullPath), 'utku')
+        name = str(self.dialog.ui.name.text())
+        fullPath = str(self.dialog.ui.path.text())
+        bookmark.addToBookmarks(self.infoFile, fullPath, name)
+        self.closeDialog()
         
     def showBookmarkDialog(self):
-        dialog = QtGui.QDialog()
-        self.dialog = dialog
-        dialog.ui = bookmarkUI.Ui_Form()
-        dialog.ui.setupUi(dialog)
+        self.dialog = QtGui.QDialog()
         
-        #passing parameter
-        dialog.ui.path.setText(self.fullPath)
-        #calling function
+        self.dialog.ui = bookmarkUI.Ui_Form()
+        self.dialog.ui.setupUi(self.dialog)
+        
+        self.dialog.ui.path.setText(self.fullPath)
        
-        dialog.ui.addButton.clicked.connect(self.add)
-        dialog.ui.cancelButton.clicked.connect(self.closeDialog)
+        self.dialog.ui.addButton.clicked.connect(self.add)
+        self.dialog.ui.cancelButton.clicked.connect(self.closeDialog)
         
         
-        dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-        dialog.exec_()
+        self.dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.dialog.exec_()
         
         
     def __init__(self, fullPath):
