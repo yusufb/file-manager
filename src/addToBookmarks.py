@@ -2,8 +2,14 @@
 Created on May 13, 2014
 @author: utku
 '''
+from PyQt4 import QtCore,QtGui
 import Main
 from modules import bookmark
+
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
 
 class addToBookmarks(Main.WindowSource):
 
@@ -11,7 +17,9 @@ class addToBookmarks(Main.WindowSource):
     fullPath = ""
     
     def add(self):
-        bookmark.addToBookmarks(self, self.infoFile, str(self.fullPath), 'utku')
+        #bookmark.readBookmarks(self.infoFile)
+        #bookmark.showAllBookmarks(self.infoFile)
+        bookmark.addToBookmarks(self.infoFile, str(self.fullPath), 'utku')
         
     def __init__(self, fullPath):
         super(addToBookmarks, self).__init__(None)
