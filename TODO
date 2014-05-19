@@ -11,3 +11,4 @@ text editor
 text file analysis? (letter, word, line#)
 disk analysis
 multi-rename (img1, img2)
+add file types to file_types.json
