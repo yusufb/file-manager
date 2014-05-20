@@ -6,10 +6,11 @@ from PyQt4 import QtGui
 import Main, Utils
 import json
 from pprint import pprint
+import Paths
 
 class fileTypeInfo(Main.WindowSource):
     fileName = ""
-    infoFile = "../resources/data/file_types.json"
+    infoFile = Paths.FILE_TYPES
     
     def fileTypeFunc(self):
         
