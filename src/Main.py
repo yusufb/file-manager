@@ -57,6 +57,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.deleteButton.triggered.connect(self.callDelete)
         self.fileTypeButton.triggered.connect(self.callFileTypeInfo)
         self.bookmarkButton.triggered.connect(self.callAddToBookmarks)
+        self.bookmarkListButton.triggered.connect(self.callListBookmarks)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -94,6 +95,10 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def callAddToBookmarks(self):
         import addToBookmarks
         addToBookmarks.addToBookmarks(self.currentDir + "/" + self.clickedFileOrDir)
+        
+    def callListBookmarks(self):
+        import showBookmarksList
+        showBookmarksList.showBookmarksList(self.currentDir + "/" + self.clickedFileOrDir)
     
     def callDelete(self):
         import deleteFileDir
