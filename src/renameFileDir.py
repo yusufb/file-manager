@@ -25,7 +25,6 @@ class renameFileDir(Main.WindowSource):
         text, ok = QtGui.QInputDialog.getText(self, 'new name', 'Enter the new name:',  QtGui.QLineEdit.Normal , Utils.getFileNameFromFullPath(unicode(self.currentFileName)))
         
         if ok:
-            print "*" , unicode(text)
             self.newFileName = unicode(text)
             print "file name is set to '" + self.newFileName + "'"
             return True

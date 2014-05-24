@@ -41,6 +41,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.currentDirTxtLine2.returnPressed.connect(lambda: self.doShowDir(1))
         self.newDirButton.triggered.connect(self.callNewDir)
         
+        self.homeTreeView.clicked.connect(self.homeTreeviewClicked)
+        
         self.treeView.clicked.connect(lambda: self.changeActiveTreeview(0))
         self.treeView_2.clicked.connect(lambda: self.changeActiveTreeview(1))
         self.treeView.clicked.connect(self.changeclickedFileOrDir)
@@ -170,7 +172,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     
     def treeviewClicked(self, index):
         print "> " + self.fileSystemModels[self.activeTreeview].filePath(index)
-        newPath = str(self.fileSystemModels[self.activeTreeview].filePath(index))
+        newPath = unicode(self.fileSystemModels[self.activeTreeview].filePath(index))
         print "new path is " + newPath
         if isdir(newPath):
             self.currentDir = newPath
@@ -182,6 +184,16 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         elif isfile(newPath):
             self.clickedFile = newPath
             self.callOpenFile()
+            
+    def homeTreeviewClicked(self, index):
+        newPath = unicode(self.fileSystemModel3.filePath(index))
+        print "new path is set to" + newPath + " by home treeview"
+        self.currentDir = newPath
+        if self.activeTreeview==0:
+            self.currentDirTxtLine.setText(self.currentDir)
+        elif self.activeTreeview==1:
+            self.currentDirTxtLine2.setText(self.currentDir)
+        self.doShowDir(self.activeTreeview)
     
     def changeclickedFileOrDir(self, index):
         self.clickedFileOrDir = unicode(self.fileSystemModels[self.activeTreeview].filePath(index)).rsplit('/')[-1]

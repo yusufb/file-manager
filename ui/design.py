@@ -1,5 +1,7 @@
 from PyQt4 import QtCore, QtGui
 import sys
+from PyQt4.Qt import QDir
+from os.path import expanduser
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -22,8 +24,24 @@ class Ui_Dialog(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         
+        
+        self.homeTreeView = QtGui.QListView(self.centralwidget)
+        self.homeTreeView.setGeometry(QtCore.QRect(10, 60, 190, 461))
+        self.homeTreeView.setObjectName((_fromUtf8("homeTreeView")))
+        self.fileSystemModel3 = QtGui.QFileSystemModel(self.homeTreeView)
+        self.fileSystemModel3.setReadOnly(True)
+        self.root3 = self.fileSystemModel3.setRootPath(unicode(expanduser("~")))
+        self.fileSystemModel3.setFilter(QDir.Dirs | QDir.NoDotAndDotDot)
+        self.homeTreeView.setModel(self.fileSystemModel3)
+        self.homeTreeView.setRootIndex(self.root3)
+        '''
+        self.homeTreeView.hideColumn(1)
+        self.homeTreeView.hideColumn(2)
+        self.homeTreeView.hideColumn(3)
+        '''
+        
         self.treeView = QtGui.QListView(self.centralwidget)
-        self.treeView.setGeometry(QtCore.QRect(80, 60, 440, 461))
+        self.treeView.setGeometry(QtCore.QRect(220, 60, 440, 461))
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
         self.fileSystemModel.setReadOnly(True)
@@ -32,7 +50,7 @@ class Ui_Dialog(object):
         self.treeView.setRootIndex(self.root)
         
         self.treeView_2 = QtGui.QListView(self.centralwidget)
-        self.treeView_2.setGeometry(QtCore.QRect(550, 60, 440, 461))
+        self.treeView_2.setGeometry(QtCore.QRect(690, 60, 440, 461))
         self.treeView_2.setObjectName(_fromUtf8("treeView_2"))
         self.fileSystemModel2 = QtGui.QFileSystemModel(self.treeView_2)
         self.fileSystemModel2.setReadOnly(True)
@@ -51,11 +69,11 @@ class Ui_Dialog(object):
         '''
         
         self.currentDirTxtLine = QtGui.QLineEdit(self.centralwidget)
-        self.currentDirTxtLine.setGeometry(QtCore.QRect(80, 20, 440, 24))
+        self.currentDirTxtLine.setGeometry(QtCore.QRect(220, 20, 440, 24))
         self.currentDirTxtLine.setObjectName(_fromUtf8("currentDirTxtLine"))
         
         self.currentDirTxtLine2 = QtGui.QLineEdit(self.centralwidget)
-        self.currentDirTxtLine2.setGeometry(QtCore.QRect(550, 20, 440, 24))
+        self.currentDirTxtLine2.setGeometry(QtCore.QRect(690, 20, 440, 24))
         self.currentDirTxtLine2.setObjectName(_fromUtf8("currentDirTxtLine2"))
         
         
