@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Created on May 8, 2014
 @author: yusuf
@@ -13,17 +15,18 @@ class renameFileDir(Main.WindowSource):
     
     def renameFunc(self):
         if(self.renameDialog()):
-            if rename.rename(self.currentFileName, Utils.getParentDir(str(self.currentFileName)) + "/" + self.newFileName):
-                print "file name changed from '" + self.currentFileName + "' to '" + self.newFileName + "'"
+            if rename.rename(unicode(self.currentFileName), Utils.getParentDir(unicode(self.currentFileName)) + "/" + unicode(self.newFileName)):
+                print "file name changed from '" + unicode(self.currentFileName) + "' to '" + unicode(self.newFileName) + "'"
             else:
                 print "name can not be changed"
         
     def renameDialog(self):
         
-        text, ok = QtGui.QInputDialog.getText(self, 'new name', 'Enter the new name:',  QtGui.QLineEdit.Normal , Utils.getFileNameFromFullPath(str(self.currentFileName)))
+        text, ok = QtGui.QInputDialog.getText(self, 'new name', 'Enter the new name:',  QtGui.QLineEdit.Normal , Utils.getFileNameFromFullPath(unicode(self.currentFileName)))
         
         if ok:
-            self.newFileName = str(text)
+            print "*" , unicode(text)
+            self.newFileName = unicode(text)
             print "file name is set to '" + self.newFileName + "'"
             return True
 

@@ -15,4 +15,4 @@ add file types to file_types.json
 file / dir perms
 home treeview to leftmost
 function keys for filetype, rename etc.
-!! unicode character issues
+!! unicode character issues => change all strings in modules and source from str to unicode(str)

@@ -17,7 +17,7 @@ class preview(Main.WindowSource, design.Ui_Dialog):
     imgExts = ['png','jpg','jpeg','gif','tif','tiff','bmp', 'ico']
     
     def showPreview(self, fullPath):
-        fileName = Utils.getFileNameFromFullPath(str(fullPath))
+        fileName = Utils.getFileNameFromFullPath(unicode(fullPath))
         if self.checkExts(fileName):
             print "file preview is showed"
             return True
