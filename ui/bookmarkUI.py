@@ -25,37 +25,32 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(450, 200)
-        self.path = QtGui.QLineEdit(Form)
+    def setupUi(self, Form2):
+        Form2.setObjectName(_fromUtf8("Form2"))
+        Form2.resize(450, 200)
+        self.path = QtGui.QLineEdit(Form2)
         self.path.setGeometry(QtCore.QRect(60, 10, 113, 20))
         self.path.setObjectName(_fromUtf8("path"))
-        self.name = QtGui.QLineEdit(Form)
+        self.name = QtGui.QLineEdit(Form2)
         self.name.setGeometry(QtCore.QRect(60, 40, 113, 20))
         self.name.setObjectName(_fromUtf8("name"))
 
-        self.label = QtGui.QLabel(Form)
+        self.label = QtGui.QLabel(Form2)
         self.label.setGeometry(QtCore.QRect(10, 10, 46, 13))
         self.label.setObjectName(_fromUtf8("label"))
-        self.label_2 = QtGui.QLabel(Form)
+        self.label_2 = QtGui.QLabel(Form2)
         self.label_2.setGeometry(QtCore.QRect(10, 40, 46, 13))
         self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.addButton = QtGui.QPushButton(Form)
+        self.addButton = QtGui.QPushButton(Form2)
         self.addButton.setGeometry(QtCore.QRect(80, 140, 91, 23))
         self.addButton.setObjectName(_fromUtf8("addButton"))
-        self.cancelButton = QtGui.QPushButton(Form)
+        self.cancelButton = QtGui.QPushButton(Form2)
         #self.addButton.clicked.connect(self.connectFTP)
         self.cancelButton.setGeometry(QtCore.QRect(0, 140, 81, 23))
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(Form2)
+        QtCore.QMetaObject.connectSlotsByName(Form2)
     
-    #def addToBookmark(self):
-     #   addToBookmarks.addToBookmarks.add(self);
-      #  Dialog.close()
-
-        
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Add to Bookmarks", None))
         self.label.setText(_translate("Form", "Path", None))

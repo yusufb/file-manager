@@ -38,7 +38,7 @@ def showAllBookmarks(jsonFile):
     jsonObjj = readBookmarks(jsonFile)
     allBookmarks = []
     for index in range(len(jsonObjj)):
-        allBookmarks.append(jsonObjj[index]['name'] +' - '+ jsonObjj[index]['path'])
+        allBookmarks.append(jsonObjj[index])
     return allBookmarks
     
 def idGenerator(jsonFile):

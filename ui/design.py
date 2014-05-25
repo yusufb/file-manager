@@ -2,7 +2,7 @@ from PyQt4 import QtCore, QtGui
 import sys
 from PyQt4.Qt import QDir
 from os.path import expanduser
-from gi.repository import GLib
+#from gi.repository import GLib
 from src import Utils
 
 try:
@@ -39,15 +39,15 @@ class Ui_Dialog(object):
         self.fileSystemModel3.setReadOnly(True)
         
         
-        desktopDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DESKTOP)) )
-        downloadsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOWNLOAD)) )
-        documentsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOCUMENTS)) )
-        musicDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_MUSIC)) )
-        picturesDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)) )
-        sharedDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PUBLIC_SHARE)) )
-        videosDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)) )
+        #desktopDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DESKTOP)) )
+        #downloadsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOWNLOAD)) )
+        #documentsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOCUMENTS)) )
+        #musicDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_MUSIC)) )
+        #picturesDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)) )
+        #sharedDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PUBLIC_SHARE)) )
+        #videosDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)) )
         
-        self.fileSystemModel3.setNameFilters([desktopDir, downloadsDir, documentsDir, musicDir, picturesDir, sharedDir, videosDir])     
+        #self.fileSystemModel3.setNameFilters([desktopDir, downloadsDir, documentsDir, musicDir, picturesDir, sharedDir, videosDir])     
         self.fileSystemModel3.setNameFilterDisables(False);
         self.root3 = self.fileSystemModel3.setRootPath(unicode(expanduser("~")))
         self.fileSystemModel3.setFilter(QDir.Dirs | QDir.NoDotAndDotDot)

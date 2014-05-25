@@ -2,32 +2,80 @@
 Created on May 20, 2014
 @author: utku
 '''
+from PyQt4 import QtCore,QtGui,Qt
 import Main
-from PyQt4 import QtCore,QtGui
+from genericpath import isdir, isfile
 from modules import bookmark
 from ui import bookmarkListUI
+from src.Main import WindowSource
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class showBookmarksList(Main.WindowSource):
+class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
     
     infoFile = "../resources/data/bookmarks.json"
     fullPath = ""
     
     def showBookmark(self):
-        #bookmark.showAllBookmarks(self.infoFile)
-        return
+        bookmarkList =  bookmark.showAllBookmarks(self.infoFile)
+        
+        self.dialog.ui.bookmarks.setColumnCount(2)
+        self.labels = Qt.QStringList()
+        self.labels.append("Name")
+        self.labels.append("Path")
+        self.dialog.ui.bookmarks.setHorizontalHeaderLabels(self.labels)
+        self.listName = Qt.QStringList()
+        self.listPath = Qt.QStringList()
+        
+        for index, values in enumerate(bookmarkList):
+            self.listName.append(Qt.QString(unicode(values['name'])))
+            self.listPath.append(Qt.QString(unicode(values['path'])))
+            self.name =  QtGui.QTableWidgetItem(self.listName[index])
+            self.name.setToolTip(Qt.QString(unicode(values['path'])))
+            self.path =  QtGui.QTableWidgetItem(self.listPath[index])
+            self.path.setToolTip(Qt.QString(unicode(values['path'])))
+            self.name.setFlags(self.name.flags() & ~QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsSelectable)
+            self.path.setFlags(self.path.flags() & ~QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsSelectable)
+            self.dialog.ui.bookmarks.insertRow(index)
+            self.dialog.ui.bookmarks.setItem(index, 0, self.name) ## satir, sutuun
+            self.dialog.ui.bookmarks.setItem(index, 1, self.path) ## satir, sutuun
+            
+        
+        QtCore.QObject.connect(self.dialog.ui.bookmarks, QtCore.SIGNAL(_fromUtf8("itemDoubleClicked(QTableWidgetItem*)")), self.directToDir)
+    
+    
+    def directToDir(self, index):
+        newPath = unicode(index.toolTip())
+        print "new path is " + newPath
+        print "active " + str(self.activeTreeview)
+        if isdir(newPath):
+            self.currentDir = newPath
+            print "*", self.currentDir
+            self.test()
+        elif isfile(newPath):
+            self.clickedFile = newPath
+            self.callOpenFile()
     
     def showBookmarkListDialog(self):
-        #UI gelecek
-        return  
+        self.dialog = QtGui.QDialog()
+        self.dialog.ui = bookmarkListUI.Ui_Form()
+        self.dialog.ui.setupUi(self.dialog)
+        self.dialog.ui.removeButton.clicked.connect(self.deleteFromBookmarkList)
+
+        self.showBookmark()
+        
+        self.dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.dialog.exec_() 
+        
+    def deleteFromBookmarkList(self):
+        return
 
     def __init__(self, fullPath):
         super(showBookmarksList, self).__init__(None)
         self.fullPath = fullPath
-        self.showBookmark()
+        self.showBookmarkListDialog()
 
 
