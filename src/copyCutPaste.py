@@ -4,17 +4,22 @@ Created on May 25, 2014
 '''
 
 import Main
+from modules import move, copy
 
 class copyCutPaste(Main.WindowSource):
-    path = ""
     
-    def doOp(self, op):
+    def doOp(self, op, pasteFile, path):
         
-        print op + " " + self.path
+        if op == "copy":
+            copy.copy(unicode(pasteFile), unicode(path))
+        
+        elif op == "cut":
+            move.move(unicode(pasteFile), unicode(path))
+        
+        print op + " " + unicode(pasteFile) + " " + unicode(path)
         
 
 
-    def __init__(self, path, op):
+    def __init__(self, op, pasteFile, path):
         super(copyCutPaste, self).__init__(None)
-        self.path = path
-        self.doOp(op)
+        self.doOp(op, pasteFile, path)

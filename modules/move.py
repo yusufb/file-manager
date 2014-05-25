@@ -3,9 +3,10 @@ Created on Dec 25, 2013
 @author: yusuf
 '''
 def move(filename, dest):
-    import os
+    import shutil, errno
     try:
-        os.rename(filename, dest + "/" + filename)
-        return True
-    except OSError as e:
-        print('An error has occured during moving:', e.errno, e.strerror)
+        shutil.move(filename, dest)
+    except OSError as exc:
+        if exc.errno == errno.ENOTDIR:
+            shutil.move(filename, dest)
+        else: raise

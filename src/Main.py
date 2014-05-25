@@ -3,6 +3,7 @@ import sys
 from ui import design
 from genericpath import isdir, isfile
 from collections import OrderedDict
+from src import Utils
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -77,7 +78,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'moveFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
         actions = []
         actionFunctions = []
         
@@ -92,16 +93,20 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
                 getattr(self, actionFunctions[i])()
                 
     def copyFile(self):
-        import copyCutPaste
-        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'copy')
+        self.copyCutFile = ['copy', self.currentDir + "/" + self.clickedFileOrDir]
+        print self.clickedFileOrDir + " file set to be copied"
     
     def cutFile(self):
-        import copyCutPaste
-        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'cut')
+        self.copyCutFile = ['cut', self.currentDir + "/" + self.clickedFileOrDir]
+        print self.clickedFileOrDir + " file set to be cut"
         
     def pasteFile(self):
         import copyCutPaste
-        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'paste')
+        if self.activeTreeview == 0:
+            p = unicode(self.currentDirTxtLine.text())
+        elif self.activeTreeview == 1:
+            p = unicode(self.currentDirTxtLine2.text())
+        copyCutPaste.copyCutPaste(self.copyCutFile[0], self.copyCutFile[1], p)
     
     def callFileTypeInfo(self):
         import fileTypeInfo

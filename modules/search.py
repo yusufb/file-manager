@@ -38,3 +38,4 @@ def search(fileName, search_type='a', search_dir='.', exact=True):
             withFileType.append(("d", fd))
     
     return withFileType
+

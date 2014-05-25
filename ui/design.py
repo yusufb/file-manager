@@ -196,11 +196,11 @@ class Ui_Dialog(object):
         image = QtGui.QImage(previewFileName)
         self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(image))
         self.imageLabel.adjustSize()
-        self.imageLabel.resize(200, 200*self.imageLabel.height()/self.imageLabel.width())
+        self.imageLabel.resize(150, 150*self.imageLabel.height()/self.imageLabel.width())
         
         self.scrollArea = QtGui.QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
-        self.scrollArea.setGeometry(QtCore.QRect(1100, 220, 202, 200*self.imageLabel.height()/self.imageLabel.width()+2))
+        self.scrollArea.setGeometry(QtCore.QRect(1150, 220, 152, 150*self.imageLabel.height()/self.imageLabel.width()+2))
         self.scrollArea.setBackgroundRole(QtGui.QPalette.Dark)
         self.scrollArea.setWidget(self.imageLabel)
         self.scrollArea.setVisible(False)
