@@ -69,6 +69,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def changeActiveTreeview(self, i):
         self.activeTreeview = i
+        print "active treeview is now " + str(i)
         if i==0:
             self.currentDir = self.currentDirTxtLine.text()
         elif i==1:
@@ -76,7 +77,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'moveFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
         actions = []
         actionFunctions = []
         
@@ -89,6 +90,18 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         for i in range(0, len(actions)):
             if action == actions[i]:
                 getattr(self, actionFunctions[i])()
+                
+    def copyFile(self):
+        import copyCutPaste
+        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'copy')
+    
+    def cutFile(self):
+        import copyCutPaste
+        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'cut')
+        
+    def pasteFile(self):
+        import copyCutPaste
+        copyCutPaste.copyCutPaste(self.clickedFileOrDir, 'paste')
     
     def callFileTypeInfo(self):
         import fileTypeInfo
