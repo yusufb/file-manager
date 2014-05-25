@@ -2,6 +2,8 @@ from PyQt4 import QtCore, QtGui
 import sys
 from PyQt4.Qt import QDir
 from os.path import expanduser
+from gi.repository import GLib
+from src import Utils
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -25,11 +27,28 @@ class Ui_Dialog(object):
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         
         
+        self.homeTreeViewLabel = QtGui.QLabel(self.centralwidget)
+        self.homeTreeViewLabel.setText("<b>Quick Links</b>")
+        self.homeTreeViewLabel.setGeometry(QtCore.QRect(10, 35, 440, 24))
+        self.homeTreeViewLabel.setObjectName(_fromUtf8("homeTreeViewLabel"))
+        
         self.homeTreeView = QtGui.QListView(self.centralwidget)
         self.homeTreeView.setGeometry(QtCore.QRect(10, 60, 190, 461))
         self.homeTreeView.setObjectName((_fromUtf8("homeTreeView")))
         self.fileSystemModel3 = QtGui.QFileSystemModel(self.homeTreeView)
         self.fileSystemModel3.setReadOnly(True)
+        
+        
+        desktopDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DESKTOP)) )
+        downloadsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOWNLOAD)) )
+        documentsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOCUMENTS)) )
+        musicDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_MUSIC)) )
+        picturesDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)) )
+        sharedDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_PUBLIC_SHARE)) )
+        videosDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)) )
+        
+        self.fileSystemModel3.setNameFilters([desktopDir, downloadsDir, documentsDir, musicDir, picturesDir, sharedDir, videosDir])     
+        self.fileSystemModel3.setNameFilterDisables(False);
         self.root3 = self.fileSystemModel3.setRootPath(unicode(expanduser("~")))
         self.fileSystemModel3.setFilter(QDir.Dirs | QDir.NoDotAndDotDot)
         self.homeTreeView.setModel(self.fileSystemModel3)

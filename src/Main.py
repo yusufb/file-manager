@@ -186,6 +186,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.callOpenFile()
             
     def homeTreeviewClicked(self, index):
+        
         newPath = unicode(self.fileSystemModel3.filePath(index))
         print "new path is set to" + newPath + " by home treeview"
         self.currentDir = newPath
