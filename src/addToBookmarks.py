@@ -6,7 +6,9 @@ from PyQt4 import QtCore,QtGui
 import Main
 from modules import bookmark
 from ui import bookmarkUI
+from src import Paths
 from src import Utils
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -15,7 +17,7 @@ except AttributeError:
 
 class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
 
-    infoFile = "../resources/data/bookmarks.json"
+    infoFile = Paths.BOOKMARKS
     fullPath = ""
     bookmarkName = ''
     
@@ -38,7 +40,6 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
         
         self.dialog.ui.path.setText(self.fullPath)
         self.dialog.ui.name.setText(Utils.stripExtension( Utils.getFileNameFromFullPath(unicode(self.fullPath)) ) )
-       
         self.dialog.ui.addButton.clicked.connect(self.add)
         self.dialog.ui.cancelButton.clicked.connect(self.closeDialog)
         

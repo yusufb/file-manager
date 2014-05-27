@@ -92,7 +92,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         print "right clicked"
         
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks'), ('Add to Tag', 'callAddToTag'), ('Properties', 'callProperties')))
         actions = []
         actionFunctions = []
         
@@ -150,7 +150,14 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         toOpenFile = self.clickedFile
         if(isfile(toOpenFile)):
             openFile.openFile(toOpenFile)
-                
+    
+    def callAddTotag(self):
+        return
+    
+    def callProperties(self):
+        import properties
+        properties.properties(self.currentDir + "/" + self.clickedFileOrDir)
+        
     def callNewFile(self):
         import newFile
         newFile.newFile(self.currentDir)

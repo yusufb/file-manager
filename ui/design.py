@@ -176,7 +176,7 @@ class Ui_Dialog(object):
         icon9 = QtGui.QIcon()
         icon9.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark-list.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bookmarkListButton.setIcon(icon9)
-        self.bookmarkListButton.setText("List to Bookmarks")
+        self.bookmarkListButton.setText("List Bookmarks")
         self.bookmarkListButton.setObjectName(_fromUtf8("bookmarkListButton"))
         
         self.toolBar.addAction(self.newDirButton)

@@ -7,7 +7,7 @@ import Main
 from genericpath import isdir, isfile
 from modules import bookmark
 from ui import bookmarkListUI
-from src.Main import WindowSource
+from src import Paths
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,7 +16,7 @@ except AttributeError:
 
 class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
     
-    infoFile = "../resources/data/bookmarks.json"
+    infoFile = Paths.BOOKMARKS
     fullPath = ""
     
     def showBookmark(self):
