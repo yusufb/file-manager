@@ -70,6 +70,7 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         
     def deleteFromBookmarkList(self):
         print self.dialog.ui.bookmarks.currentItem().text()
+        print 'asd'
 
     def __init__(self, fullPath):
         super(showBookmarksList, self).__init__(None)
