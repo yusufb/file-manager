@@ -1,5 +1,5 @@
 rar/zip
-text/img preview
+text preview
 file info on click
 show path with clickable directory links
 file / dir tagging
@@ -17,3 +17,4 @@ function keys for filetype, rename etc.
 !! unicode character issues => change all strings in modules and source from str to unicode(str)
 filter files
 right click doesnt select new path unless left click first
+filter dirs!

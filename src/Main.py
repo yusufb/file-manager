@@ -15,6 +15,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     clickedFile = ""
     clickedFileOrDir = ""
     activeTreeview = 0
+    filter = ""
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
@@ -68,13 +69,23 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.treeView_2.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView_2.customContextMenuRequested.connect(self.rightClickMenu)
         
+        self.filterTxtLine.textChanged.connect(self.setFilter)
+        
+    def setFilter(self):
+        self.filter = unicode( self.filterTxtLine.text() )
+        self.doShowDir(self.activeTreeview)
+        
     def changeActiveTreeview(self, i):
         self.activeTreeview = i
         print "active treeview is now " + str(i)
         if i==0:
             self.currentDir = self.currentDirTxtLine.text()
+            self.currentDirTxtLine2.setStyleSheet("QLineEdit { background-color : #ccc; color : #999; }")
+            self.currentDirTxtLine.setStyleSheet("")
         elif i==1:
             self.currentDir = self.currentDirTxtLine2.text()
+            self.currentDirTxtLine.setStyleSheet("QLineEdit { background-color : #ccc; color : #999; }")
+            self.currentDirTxtLine2.setStyleSheet("")
             
     def rightClickMenu(self, pos):
         menu = QtGui.QMenu()
@@ -176,15 +187,18 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.clickedFileOrDir = ""
         
         if(isdir(newDir)):
-            '''
-            #filtering files:
-            self.fileSystemModel.setNameFilters(["*.py"])     
-            self.fileSystemModel.setNameFilterDisables(False);
-            '''
+            
+            self.fileSystemModels[self.activeTreeview].setNameFilters([self.filter+"*"])  
+            self.fileSystemModels[self.activeTreeview].setNameFilterDisables(False)
+                
+
             self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(newDir)
             self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
             self.treeViews[self.activeTreeview].setRootIndex(self.roots[self.activeTreeview])
             self.currentDir = newDir
+            
+            self.changeActiveTreeview(tv)
+            
         else:
             print newDir + " is not a directory"
     

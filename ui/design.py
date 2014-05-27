@@ -38,6 +38,11 @@ class Ui_Dialog(object):
         self.fileSystemModel3 = QtGui.QFileSystemModel(self.homeTreeView)
         self.fileSystemModel3.setReadOnly(True)
         
+        self.filterTxtLine = QtGui.QLineEdit(self.centralwidget)
+        self.filterTxtLine.setGeometry(QtCore.QRect(10, 530, 190, 24))
+        self.filterTxtLine.setObjectName(_fromUtf8("filterTxtLine"))
+        self.filterTxtLine.setPlaceholderText("Quick Filter")
+        
         
         #desktopDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DESKTOP)) )
         #downloadsDir = Utils.getFileNameFromFullPath( unicode(GLib.get_user_special_dir(GLib.USER_DIRECTORY_DOWNLOAD)) )
@@ -94,6 +99,7 @@ class Ui_Dialog(object):
         self.currentDirTxtLine2 = QtGui.QLineEdit(self.centralwidget)
         self.currentDirTxtLine2.setGeometry(QtCore.QRect(690, 20, 440, 24))
         self.currentDirTxtLine2.setObjectName(_fromUtf8("currentDirTxtLine2"))
+        self.currentDirTxtLine2.setStyleSheet("QLineEdit { background-color : #ccc; color : #999; }")
         
         
         MainWindow.setCentralWidget(self.centralwidget)
