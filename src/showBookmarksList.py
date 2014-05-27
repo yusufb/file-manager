@@ -37,15 +37,14 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
             self.name.setToolTip(Qt.QString(unicode(values['path'])))
             self.path =  QtGui.QTableWidgetItem(self.listPath[index])
             self.path.setToolTip(Qt.QString(unicode(values['path'])))
-            self.name.setFlags(self.name.flags() & ~QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsSelectable)
-            self.path.setFlags(self.path.flags() & ~QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsSelectable)
+            self.name.setFlags(self.name.flags() & ~QtCore.Qt.ItemIsEditable)
+            self.path.setFlags(self.path.flags() & ~QtCore.Qt.ItemIsEditable)
             self.dialog.ui.bookmarks.insertRow(index)
             self.dialog.ui.bookmarks.setItem(index, 0, self.name) ## satir, sutuun
             self.dialog.ui.bookmarks.setItem(index, 1, self.path) ## satir, sutuun
             
         
         QtCore.QObject.connect(self.dialog.ui.bookmarks, QtCore.SIGNAL(_fromUtf8("itemDoubleClicked(QTableWidgetItem*)")), self.directToDir)
-    
     
     def directToDir(self, index):
         newPath = unicode(index.toolTip())
@@ -54,7 +53,6 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         if isdir(newPath):
             self.currentDir = newPath
             print "*", self.currentDir
-            self.test()
         elif isfile(newPath):
             self.clickedFile = newPath
             self.callOpenFile()
@@ -71,7 +69,7 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         self.dialog.exec_() 
         
     def deleteFromBookmarkList(self):
-        return
+        print self.dialog.ui.bookmarks.currentItem().text()
 
     def __init__(self, fullPath):
         super(showBookmarksList, self).__init__(None)
