@@ -45,14 +45,22 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
             
         
         QtCore.QObject.connect(self.dialog.ui.bookmarks, QtCore.SIGNAL(_fromUtf8("itemDoubleClicked(QTableWidgetItem*)")), self.directToDir)
+     
     
     def directToDir(self, index):
+        self.dialog.close()
         newPath = unicode(index.toolTip())
         print "new path is " + newPath
-        print "active " + str(self.activeTreeview)
+        print "active " + str(0)
         if isdir(newPath):
-            self.currentDir = newPath
-            print "*", self.currentDir
+            
+            if 0==0:
+                self.currentDirTxtLine.setText(newPath)
+            elif 0==1:
+                self.currentDirTxtLine.setText2(newPath)
+            
+            self.showParentDir()
+            
         elif isfile(newPath):
             self.clickedFile = newPath
             self.callOpenFile()
@@ -70,7 +78,6 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         
     def deleteFromBookmarkList(self):
         print self.dialog.ui.bookmarks.currentItem().text()
-        print 'asd'
 
     def __init__(self, fullPath):
         super(showBookmarksList, self).__init__(None)

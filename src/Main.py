@@ -71,6 +71,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
         self.filterTxtLine.textChanged.connect(self.setFilter)
         
+    
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )
         self.doShowDir(self.activeTreeview)
@@ -88,6 +89,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.currentDirTxtLine2.setStyleSheet("")
             
     def rightClickMenu(self, pos):
+        print "right clicked"
+        
         menu = QtGui.QMenu()
         actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks')))
         actions = []
@@ -96,12 +99,13 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         for k,v in actionsList.iteritems():
             actions.append(menu.addAction(k))
             actionFunctions.append(v)
-
+        
         action = menu.exec_(self.treeViews[self.activeTreeview].mapToGlobal(pos))
         
         for i in range(0, len(actions)):
             if action == actions[i]:
                 getattr(self, actionFunctions[i])()
+                
                 
     def copyFile(self):
         self.copyCutFile = ['copy', self.currentDir + "/" + self.clickedFileOrDir]
@@ -190,7 +194,6 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             
             self.fileSystemModels[self.activeTreeview].setNameFilters([self.filter+"*"])  
             self.fileSystemModels[self.activeTreeview].setNameFilterDisables(False)
-                
 
             self.roots[self.activeTreeview] = self.fileSystemModels[self.activeTreeview].setRootPath(newDir)
             self.treeViews[self.activeTreeview].setModel(self.fileSystemModels[self.activeTreeview])
@@ -246,6 +249,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         else:
             self.imageLabel.setVisible(False)
             self.scrollArea.setVisible(False)
+        
             
         
 if __name__=='__main__':

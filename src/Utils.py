@@ -17,7 +17,9 @@ def getFileExtension(fileName):
 
 def getFileNameFromFullPath(path):
     return path.rsplit('/',1)[1]
-    
+
+def stripExtension(path):
+    return path.rsplit('.',1)[0]
 
 def getOsName():
     return str(platform.system())

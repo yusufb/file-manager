@@ -6,7 +6,7 @@ from PyQt4 import QtCore,QtGui
 import Main
 from modules import bookmark
 from ui import bookmarkUI
-
+from src import Utils
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -25,8 +25,8 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
     def add(self):
         #bookmark.readBookmarks(self.infoFile)
         #bookmark.showAllBookmarks(self.infoFile)
-        name = str(self.dialog.ui.name.text())
-        fullPath = str(self.dialog.ui.path.text())
+        name = unicode(self.dialog.ui.name.text())
+        fullPath = unicode(self.dialog.ui.path.text())
         bookmark.addToBookmarks(self.infoFile, fullPath, name)
         self.closeDialog()
         
@@ -37,6 +37,7 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
         self.dialog.ui.setupUi(self.dialog)
         
         self.dialog.ui.path.setText(self.fullPath)
+        self.dialog.ui.name.setText(Utils.stripExtension( Utils.getFileNameFromFullPath(unicode(self.fullPath)) ) )
        
         self.dialog.ui.addButton.clicked.connect(self.add)
         self.dialog.ui.cancelButton.clicked.connect(self.closeDialog)

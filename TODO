@@ -15,6 +15,6 @@ add file types to file_types.json
 file / dir perms
 function keys for filetype, rename etc.
 !! unicode character issues => change all strings in modules and source from str to unicode(str)
-filter files
 right click doesnt select new path unless left click first
 filter dirs!
+file properties
