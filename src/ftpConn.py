@@ -19,7 +19,8 @@ class ftpConn(Main.WindowSource,ftpConnWidget.Ui_Form):
         self.host=unicode(self.dialog.ui.hostTxt.text())
         password=unicode(self.dialog.ui.passwordTxt.text())
         username=unicode(self.dialog.ui.usernameTxt.text())
-        ftp.ftpConnection(self.host, username, password)
+        port=unicode(self.dialog.ui.portTxt.text())
+        ftp.ftpConnection(self.host,port, username, password)
         print self.getPath()
         self.closeDialog()
         

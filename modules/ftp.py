@@ -5,12 +5,14 @@ Created on 8 Nis 2014
 '''
 
 
-def ftpConnection(adress,username,password):
+def ftpConnection(adress,port,username,password):
     import ftplib
     try:    
         
-        ftp = ftplib.FTP(adress)
+        ftp = ftplib.FTP()
+        ftp.connect(adress, port)
         ftp.login(username,password)
+        print('Connection established')
         lines= ftp.nlst()
         print lines
         return ftp
@@ -39,13 +41,5 @@ def downloadFile(ftpConn,filePath,fileName):
     except ftplib.all_errors as e:
         print('An error has occured during file upload:',e)
 
-def testFTPparams(host, port="", user="", passwd=""):
-    host=unicode(host)
-    port=unicode(port)
-    user=unicode(user)
-    passwd=unicode(passwd)
-    print host, " - ", port, "", user, " - ", passwd
-    ftpConnection(host + "" + port, user, passwd)
         
-      
          
