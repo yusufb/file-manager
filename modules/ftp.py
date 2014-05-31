@@ -12,7 +12,7 @@ def ftpConnection(adress,port,username,password):
         ftp = ftplib.FTP()
         ftp.connect(adress, port)
         ftp.login(username,password)
-        print('Connection established')
+        print('Connection has established')
         lines= ftp.nlst()
         print lines
         return ftp
