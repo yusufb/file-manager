@@ -16,6 +16,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     clickedFileOrDir = ""
     activeTreeview = 0
     filter = ""
+    ftpParams=[]
     
     def __init__(self,parent=None):
         super(WindowSource,self).__init__(parent)
@@ -62,6 +63,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.fileTypeButton.triggered.connect(self.callFileTypeInfo)
         self.bookmarkButton.triggered.connect(self.callAddToBookmarks)
         self.bookmarkListButton.triggered.connect(self.callListBookmarks)
+        self.ftpConnectionButton.triggered.connect(self.callFtp)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -165,7 +167,11 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def callNewDir(self):
         import newDir
         newDir.newDir(self.currentDir)
-    
+        
+    def callFtp(self):
+        import ftpConn
+        ftpConn.ftpConn()
+        
     def callShowDir(self):
         import showDir
         if self.activeTreeview==0:

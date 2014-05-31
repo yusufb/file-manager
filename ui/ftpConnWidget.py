@@ -57,16 +57,12 @@ class Ui_Form(object):
         self.connectButton.setGeometry(QtCore.QRect(80, 140, 91, 23))
         self.connectButton.setObjectName(_fromUtf8("connectButton"))
         self.cancelButton = QtGui.QPushButton(Form)
-        self.connectButton.clicked.connect(self.connectFTP)
         self.cancelButton.setGeometry(QtCore.QRect(0, 140, 81, 23))
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def connectFTP(self):
-        ftp.testFTPparams(self.hostTxt.text(), self.portTxt.text(), self.usernameTxt.text(), self.passwordTxt.text() )
-        Dialog.close()
         
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "FTP Connection", None))
