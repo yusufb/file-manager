@@ -16,13 +16,16 @@ class properties(Main.WindowSource, propertiesUI.Ui_Form):
         return
     
     def showPropertiesDialog(self):
-        import os
+        import os, datetime, stat
         self.dialog = QtGui.QDialog()
         self.dialog.ui = propertiesUI.Ui_Form()
         self.dialog.ui.setupUi(self.dialog)
         self.dialog.ui.lineEdit.setText(unicode(self.fullPath))
+        self.dialog.ui.lineEdit_2.setText(unicode(self.fullPath))
         self.dialog.ui.sizeValueLabel.setText(unicode(os.path.getsize(unicode(self.fullPath))) + ' bytes')
-        self.dialog.ui.typeValueLabel.setText('')
+        self.dialog.ui.createdValueLabel_2.setText(unicode(datetime.datetime.fromtimestamp(int(os.path.getctime(self.fullPath))).strftime('%d-%m-%Y %H:%M:%S')))
+        self.dialog.ui.lastmodifValuelabel.setText(unicode(datetime.datetime.fromtimestamp(int(os.path.getmtime(self.fullPath))).strftime('%d-%m-%Y %H:%M:%S')))
+        self.dialog.ui.permissionValueLabel.setText(oct(os.stat(self.fullPath)[stat.ST_MODE] & 0777))
         #self.dialog.ui.removeButton.clicked.connect(self.deleteFromBookmarkList)
 
         #self.showBookmark()

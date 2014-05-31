@@ -3,7 +3,7 @@ Created on May 13, 2014
 @author: utku
 '''
 
-import json, random
+import json
 
 def checkBookmarkList(path, filePath):
     return path in getAllPaths(filePath)

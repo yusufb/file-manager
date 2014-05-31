@@ -186,6 +186,13 @@ class Ui_Dialog(object):
         self.ftpConnectionButton.setText("FTP Connection")
         self.ftpConnectionButton.setObjectName(_fromUtf8("ftpConnectionButton"))
         
+        self.createTagButton = QtGui.QAction(MainWindow)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark_add.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.createTagButton.setIcon(icon10)
+        self.createTagButton.setText("Create Tag")
+        self.createTagButton.setObjectName(_fromUtf8("createTagButton"))
+        
      
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
@@ -198,6 +205,7 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.bookmarkButton)
         self.toolBar.addAction(self.bookmarkListButton)
         self.toolBar.addAction(self.ftpConnectionButton)
+        self.toolBar.addAction(self.createTagButton)
         
         
         ######################
