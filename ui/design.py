@@ -179,6 +179,14 @@ class Ui_Dialog(object):
         self.bookmarkListButton.setText("List Bookmarks")
         self.bookmarkListButton.setObjectName(_fromUtf8("bookmarkListButton"))
         
+        self.ftpConnectionButton = QtGui.QAction(MainWindow)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark-list.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ftpConnectionButton.setIcon(icon10)
+        self.ftpConnectionButton.setText("FTP Connection")
+        self.ftpConnectionButton.setObjectName(_fromUtf8("ftpConnectionButton"))
+        
+     
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
         self.toolBar.addAction(self.parentDir)
@@ -189,6 +197,7 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.fileTypeButton)
         self.toolBar.addAction(self.bookmarkButton)
         self.toolBar.addAction(self.bookmarkListButton)
+        self.toolBar.addAction(self.ftpConnectionButton)
         
         
         ######################
