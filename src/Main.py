@@ -134,8 +134,16 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         addToBookmarks.addToBookmarks(self.currentDir + "/" + self.clickedFileOrDir)
         
     def callListBookmarks(self):
+        self.newBookmarkPath = ""
         import showBookmarksList
-        showBookmarksList.showBookmarksList(self.currentDir + "/" + self.clickedFileOrDir)
+        bm = showBookmarksList.showBookmarksList(self.currentDir + "/" + self.clickedFileOrDir)
+
+        if self.activeTreeview==0:
+            self.currentDirTxtLine.setText(bm.newBookmarkPath)
+        elif self.activeTreeview==1:
+            self.currentDirTxtLine2.setText(bm.newBookmarkPath)
+            
+        self.doShowDir(self.activeTreeview)
     
     def callDelete(self):
         import deleteFileDir
@@ -262,6 +270,10 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         else:
             self.imageLabel.setVisible(False)
             self.scrollArea.setVisible(False)
+            
+    def mainTestFunc(self, text):
+        print text
+        self.showParentDir()
         
             
         
