@@ -178,7 +178,14 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def callFtp(self):
         import ftpConn
-        ftpConn.ftpConn()
+        f = ftpConn.ftpConn()
+        
+        if self.activeTreeview==0:
+            self.currentDirTxtLine.setText(f.getPath())
+        elif self.activeTreeview==1:
+            self.currentDirTxtLine2.setText(f.getPath())
+            
+        self.doShowDir(self.activeTreeview)
         
     def callShowDir(self):
         import showDir

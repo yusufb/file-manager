@@ -39,6 +39,7 @@ class Ui_Form(object):
         self.usernameTxt.setGeometry(QtCore.QRect(60, 70, 113, 20))
         self.usernameTxt.setObjectName(_fromUtf8("usernameTxt"))
         self.passwordTxt = QtGui.QLineEdit(Form)
+        self.passwordTxt.setEchoMode(QtGui.QLineEdit.Password)
         self.passwordTxt.setGeometry(QtCore.QRect(60, 100, 113, 20))
         self.passwordTxt.setObjectName(_fromUtf8("passwordTxt"))
         self.label = QtGui.QLabel(Form)
