@@ -64,6 +64,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.bookmarkButton.triggered.connect(self.callAddToBookmarks)
         self.bookmarkListButton.triggered.connect(self.callListBookmarks)
         self.ftpConnectionButton.triggered.connect(self.callFtp)
+        self.createTagButton.triggered.connect(self.callCreateTag)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -94,17 +95,13 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         print "right clicked"
         
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'),  ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'),  ('Add to Bookmarks', 'callAddToBookmarks'), ('Add to Tag', 'callAddToTag'), ('File Type Info', 'callFileTypeInfo'), ('Properties', 'callProperties')))
-        seperatorAfterThis = ['callOpenFile', 'pasteFile', 'callDelete', 'callAddToTag']
+        actionsList = OrderedDict((('Open', 'callOpenFile'), ('Rename', 'callRename'), ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Delete', 'callDelete'), ('File Type Info', 'callFileTypeInfo'), ('Add to Bookmarks', 'callAddToBookmarks'), ('Add Tags', 'callAddToTags'), ('Properties', 'callProperties')))
         actions = []
         actionFunctions = []
         
         for k,v in actionsList.iteritems():
-
             actions.append(menu.addAction(k))
             actionFunctions.append(v)
-            if v in seperatorAfterThis:
-                menu.addSeparator()
         
         action = menu.exec_(self.treeViews[self.activeTreeview].mapToGlobal(pos))
         
@@ -165,8 +162,14 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         if(isfile(toOpenFile)):
             openFile.openFile(toOpenFile)
     
-    def callAddTotag(self):
-        return
+    def callAddToTags(self):
+        import addToTags
+        addToTags.addToTags(self.currentDir + "/" + self.clickedFileOrDir)
+    
+    def callCreateTag(self):
+        import createTag
+        createTag.createTag(self.currentDir + "/" + self.clickedFileOrDir)
+    
     
     def callProperties(self):
         import properties
