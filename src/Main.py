@@ -243,8 +243,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         from genericpath import isfile
         if isfile(self.currentDir + "/" + self.clickedFileOrDir):
             self.clickedFile = self.currentDir + "/" + self.clickedFileOrDir
-        elif isdir(self.clickedFileOrDir):
-            self.currentDir = self.clickedFileOrDir
+        #elif isdir(self.clickedFileOrDir):
+        #    self.currentDir = self.clickedFileOrDir
         print self.clickedFileOrDir + " is clicked"
         
         from preview import preview
