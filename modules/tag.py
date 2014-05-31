@@ -7,10 +7,14 @@ import json
 
 
 def createTag(jsonFile, path, tagName, color):
-    with open(jsonFile, 'a') as datafile:
-        json.dump(createJSONObject(path, tagName, color), datafile)
-        print 'added to tags or created tag'
-    return True
+    if(checkTagList(path, tagName, jsonFile)):
+        print 'already this tag sign this file'
+        return False
+    else:
+        with open(jsonFile, 'a') as datafile:
+            json.dump(createJSONObject(path, tagName, color), datafile)
+            print 'added to tags or created tag'
+        return True
 
 def createJSONObject(path, name, color):
     data = {'path':path, 'name':name, 'color':color}
@@ -30,4 +34,14 @@ def printTagsName(jsonFile):
         availableTags.append(jsonObjj[index]['name'])
     return availableTags
 
+def checkTagList(path, name, filePath):
+    return path in getAllRecordsByTagName(filePath, name)
+
+def getAllRecordsByTagName(jsonFile, name):
+    availablePaths = []
+    jsonObjj = readTags(jsonFile)
+    for index in range(len(jsonObjj)):
+        if jsonObjj[index]['name'] == name:
+            availablePaths.append(jsonObjj[index]['path'])
+    return availablePaths
 
