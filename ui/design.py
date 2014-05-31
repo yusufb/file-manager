@@ -188,8 +188,8 @@ class Ui_Dialog(object):
         
         self.createTagButton = QtGui.QAction(MainWindow)
         icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark_add.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.createTagButton.setIcon(icon10)
+        icon11.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/create-tag.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.createTagButton.setIcon(icon11)
         self.createTagButton.setText("Create Tag")
         self.createTagButton.setObjectName(_fromUtf8("createTagButton"))
         

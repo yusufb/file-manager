@@ -95,8 +95,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         print "right clicked"
         
         menu = QtGui.QMenu()
-        actionsList = OrderedDict((('Open', 'callOpenFile'),  ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'),  ('Add to Bookmarks', 'callAddToBookmarks'), ('Add to Tag', 'callAddToTag'), ('File Type Info', 'callFileTypeInfo'), ('Properties', 'callProperties')))
-        seperatorAfterThis = ['callOpenFile', 'pasteFile', 'callDelete', 'callAddToTag']
+        actionsList = OrderedDict((('Open', 'callOpenFile'),  ('Copy', 'copyFile'), ('Cut' , 'cutFile'), ('Paste', 'pasteFile'), ('Rename', 'callRename'), ('Delete', 'callDelete'),  ('Add to Bookmarks', 'callAddToBookmarks'), ('Add Tag', 'callAddToTags'), ('File Type Info', 'callFileTypeInfo'), ('Properties', 'callProperties')))
+        seperatorAfterThis = ['callOpenFile', 'pasteFile', 'callDelete', 'callAddToTags']
         actions = []
         actionFunctions = []
         
