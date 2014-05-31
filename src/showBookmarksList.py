@@ -54,12 +54,14 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         print "active " + str(0)
         if isdir(newPath):
             
-            if 0==0:
+            if self.activeTreeview == 0:
+                print "t0"
                 self.currentDirTxtLine.setText(newPath)
-            elif 0==1:
+            elif self.activeTreeview == 1:
+                print "t1"
                 self.currentDirTxtLine.setText2(newPath)
             
-            self.showParentDir()
+            print "here"
             
         elif isfile(newPath):
             self.clickedFile = newPath

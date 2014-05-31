@@ -181,7 +181,7 @@ class Ui_Dialog(object):
         
         self.ftpConnectionButton = QtGui.QAction(MainWindow)
         icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/bookmark-list.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon10.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/ftp.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ftpConnectionButton.setIcon(icon10)
         self.ftpConnectionButton.setText("FTP Connection")
         self.ftpConnectionButton.setObjectName(_fromUtf8("ftpConnectionButton"))

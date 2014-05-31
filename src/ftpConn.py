@@ -20,6 +20,7 @@ class ftpConn(Main.WindowSource,ftpConnWidget.Ui_Form):
         password=unicode(self.dialog.ui.passwordTxt.text())
         username=unicode(self.dialog.ui.usernameTxt.text())
         ftp.ftpConnection(self.host, username, password)
+        print self.getPath()
         self.closeDialog()
         
     def closeDialog(self):
@@ -37,8 +38,8 @@ class ftpConn(Main.WindowSource,ftpConnWidget.Ui_Form):
         self.dialog.exec_()
         
     def getPath(self):
-        #self.path="/run/user/"+os.getuid()+"gvfs/ftp:host="+self.host
-        self.path="."
+        self.path="/run/user/" + str(os.getuid()) + "/gvfs/ftp:host=" + self.host
+        return self.path
 
     def __init__(self):
         super(ftpConn, self).__init__(None)
