@@ -50,7 +50,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.treeView_2.clicked.connect(lambda: self.changeActiveTreeview(1))
         self.treeView.clicked.connect(self.changeclickedFileOrDir)
         self.treeView_2.clicked.connect(self.changeclickedFileOrDir)
-
+        
         
         self.treeView.doubleClicked.connect(self.treeviewClicked)
         self.treeView_2.doubleClicked.connect(self.treeviewClicked)
@@ -104,6 +104,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
 
             actions.append(menu.addAction(k))
             actionFunctions.append(v)
+            
             if v in seperatorAfterThis:
                 menu.addSeparator()
         

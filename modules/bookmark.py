@@ -1,6 +1,6 @@
 '''
 Created on May 13, 2014
-@author: utku
+@author: utku, yusuf
 '''
 
 import json
@@ -9,17 +9,23 @@ from src import jsonFile
 
 def addToBookmarks2(jsonfile, path, name):
     
-    # ! check bookmark
-    
     j = jsonFile.jsonFile()
-    toAdd = {'path' : unicode(path), 'name' : unicode(path)}
+    toAdd = {'path' : path, 'name' : name}
     readFromFile = j.fileToJson(jsonfile)
-    pprint(readFromFile)
+    #pprint(readFromFile)
+    
+    for paths in readFromFile:
+        if paths['path'] == path:
+            print 'already in bookmarks'
+            return
+    
     toWriteList = []
-    toWriteList.append(readFromFile)
-    toWrite = toWriteList.append(toAdd)
-    if j.jsonToFile(toWrite, jsonfile):
+    toWriteList.extend(readFromFile)
+    toWriteList.append(dict(toAdd))
+    
+    if j.jsonToFile(toWriteList, jsonfile):
         print 'added to bookmarks'
+        
 
 def checkBookmarkList(path, filePath):
     return path in getAllPaths(filePath)
