@@ -4,6 +4,22 @@ Created on May 13, 2014
 '''
 
 import json
+import pprint
+from src import jsonFile
+
+def addToBookmarks2(jsonfile, path, name):
+    
+    # ! check bookmark
+    
+    j = jsonFile.jsonFile()
+    toAdd = {'path' : unicode(path), 'name' : unicode(path)}
+    readFromFile = j.fileToJson(jsonfile)
+    pprint(readFromFile)
+    toWriteList = []
+    toWriteList.append(readFromFile)
+    toWrite = toWriteList.append(toAdd)
+    if j.jsonToFile(toWrite, jsonfile):
+        print 'added to bookmarks'
 
 def checkBookmarkList(path, filePath):
     return path in getAllPaths(filePath)

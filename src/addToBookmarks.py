@@ -29,7 +29,7 @@ class addToBookmarks(Main.WindowSource, bookmarkUI.Ui_Form):
         #bookmark.showAllBookmarks(self.infoFile)
         name = unicode(self.dialog.ui.name.text())
         fullPath = unicode(self.dialog.ui.path.text())
-        bookmark.addToBookmarks(self.infoFile, fullPath, name)
+        bookmark.addToBookmarks2(self.infoFile, fullPath, name)
         self.closeDialog()
         
     def showBookmarkDialog(self):
