@@ -109,6 +109,11 @@ class Ui_Dialog(object):
         self.currentDirTxtLine2.setObjectName(_fromUtf8("currentDirTxtLine2"))
         self.currentDirTxtLine2.setStyleSheet("QLineEdit { background-color : #ccc; color : #999; }")
         
+        self.tagButtonArea = QtGui.QWidget(self.centralwidget)
+        self.tagButtonArea.setGeometry(QtCore.QRect(220, 522, 700, 44))
+        self.tagButtons = QtGui.QHBoxLayout(self.tagButtonArea)
+        self.tagButtons.setAlignment(QtCore.Qt.AlignLeft)
+        
         
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -201,6 +206,12 @@ class Ui_Dialog(object):
         self.createTagButton.setText("Create Tag")
         self.createTagButton.setObjectName(_fromUtf8("createTagButton"))
         
+        self.searchButton = QtGui.QAction(MainWindow)
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/search.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.searchButton.setIcon(icon12)
+        self.searchButton.setText("Search")
+        self.searchButton.setObjectName(_fromUtf8("searchButton"))
      
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
@@ -214,6 +225,7 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.bookmarkListButton)
         self.toolBar.addAction(self.ftpConnectionButton)
         self.toolBar.addAction(self.createTagButton)
+        self.toolBar.addAction(self.searchButton)
         
         
         ######################

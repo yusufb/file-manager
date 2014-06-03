@@ -3,10 +3,14 @@ Created on Dec 23, 2013
 @author: yusuf
 '''
 
+import os   
+from os import listdir
+from os.path import isfile, join
+from genericpath import isdir
+from fileinput import filename
+    
 def search(fileName, search_type='a', search_dir='.', exact=True):
-    from os import listdir
-    from os.path import isfile, join
-    from genericpath import isdir
+
 
     if exact:
         if search_type == 'f':
@@ -39,3 +43,30 @@ def search(fileName, search_type='a', search_dir='.', exact=True):
     
     return withFileType
 
+def recursiveSearch(fileName, search_type='a', search_dir='.', exact=True):
+    
+    matches = []
+    
+    for root, dirnames, filenames in os.walk(search_dir):
+        if exact:
+            if search_type == "f" or search_type == "a":
+                for filename in filenames:
+                    if filename == fileName:
+                            matches.append(os.path.join(root, filename))
+            if search_type == "d" or search_type == "a":
+                for dirname in dirnames:
+                    if dirname == fileName:
+                            matches.append(os.path.join(root, dirname))
+        else:
+            if search_type == "f" or search_type == "a":
+                for filename in filenames:
+                    if fileName in filename:
+                            matches.append(os.path.join(root, filename))
+            if search_type == "d" or search_type == "a":
+                for dirname in dirnames:
+                    if fileName in dirname:
+                            matches.append(os.path.join(root, dirname))           
+            
+    return matches
+
+print recursiveSearch("asd", "f", "/home/yusuf/Desktop", False)

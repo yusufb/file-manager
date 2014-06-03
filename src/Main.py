@@ -36,21 +36,21 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
         tagObj = showTags.showTags()
         self.tags = tagObj.getTags()
-        self.tagButtonArea = QtGui.QWidget(self.centralwidget)
-        self.tagButtonArea.setGeometry(QtCore.QRect(220, 530, 700, 44))
-        self.tagButtons = QtGui.QHBoxLayout(self.tagButtonArea)
         buts = {}
+        colorList = []
         for i in self.tags:
             buts.update({i['name'] : i['path']})
+            colorList.append(i['color'])
         self.buttons = []
-        for i, tag in buts.items():
-            self.buttons.append(QtGui.QPushButton("#"+i, self))
-            width = self.buttons[-1].fontMetrics().boundingRect(i).width() + 7
+        i=0
+        for name, path in buts.items():
+            self.buttons.append(QtGui.QPushButton("#"+name, self))
+            width = self.buttons[-1].fontMetrics().boundingRect(name).width() + 20
             self.buttons[-1].setMaximumWidth(width)
-            self.buttons[-1].clicked.connect(partial(self.test, data=tag))
-            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : #999; }")
+            self.buttons[-1].clicked.connect(partial(self.test, data=path))
+            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
             self.tagButtons.addWidget(self.buttons[-1])
-            
+            i += 1
         
     def main(self):
         #self.showMaximized()
@@ -95,8 +95,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.filterTxtLine.textChanged.connect(self.setFilter)
         
     
-    def test(self):
-        print "***************************"
+    def test(self, x ,data):
+        print x
     
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )
