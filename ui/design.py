@@ -32,6 +32,14 @@ class Ui_Dialog(object):
         self.homeTreeViewLabel.setGeometry(QtCore.QRect(10, 35, 440, 24))
         self.homeTreeViewLabel.setObjectName(_fromUtf8("homeTreeViewLabel"))
         
+        '''
+        self.tagsList = QtGui.QWidget(self.centralwidget)
+        self.tagsList.setGeometry(QtCore.QRect(220, 530, 700, 44))
+        self.tagsList.setObjectName(_fromUtf8("tagsList"))
+        '''
+        self.tagsList = QtGui.QWidget(self.centralwidget)
+        self.tagsList.setGeometry(QtCore.QRect(220, 530, 700, 44))
+        
         self.homeTreeView = QtGui.QListView(self.centralwidget)
         self.homeTreeView.setGeometry(QtCore.QRect(10, 60, 190, 461))
         self.homeTreeView.setObjectName((_fromUtf8("homeTreeView")))

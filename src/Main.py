@@ -1,9 +1,10 @@
-from PyQt4 import QtCore,QtGui
+from PyQt4 import QtCore,QtGui,Qt
 import sys
 from ui import design
 from genericpath import isdir, isfile
 from collections import OrderedDict
-from src import Utils
+from src import Utils, showTags
+from functools import partial
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -31,6 +32,25 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
         self.treeviewClicked(self.root)
         self.currentDirTxtLine2.setText(self.currentDir)
+        self.changeActiveTreeview(0)
+        
+        tagObj = showTags.showTags()
+        self.tags = tagObj.getTags()
+        self.tagButtonArea = QtGui.QWidget(self.centralwidget)
+        self.tagButtonArea.setGeometry(QtCore.QRect(220, 530, 700, 44))
+        self.tagButtons = QtGui.QHBoxLayout(self.tagButtonArea)
+        buts = {}
+        for i in self.tags:
+            buts.update({i['name'] : i['path']})
+        self.buttons = []
+        for i, tag in buts.items():
+            self.buttons.append(QtGui.QPushButton("#"+i, self))
+            width = self.buttons[-1].fontMetrics().boundingRect(i).width() + 7
+            self.buttons[-1].setMaximumWidth(width)
+            self.buttons[-1].clicked.connect(partial(self.test, data=tag))
+            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : #999; }")
+            self.tagButtons.addWidget(self.buttons[-1])
+            
         
     def main(self):
         #self.showMaximized()
@@ -74,6 +94,9 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
         self.filterTxtLine.textChanged.connect(self.setFilter)
         
+    
+    def test(self):
+        print "***************************"
     
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )

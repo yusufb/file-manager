@@ -114,6 +114,7 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
                 
             if j.jsonToFile(newList, self.infoFile):
                 print "bookmark file is updated"
+                self.dialog.close()
                 
             
 
