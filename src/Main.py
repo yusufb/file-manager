@@ -34,24 +34,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.currentDirTxtLine2.setText(self.currentDir)
         self.changeActiveTreeview(0)
         
-        tagObj = showTags.showTags()
-        self.tags = tagObj.getTags()
-        buts = {}
-        colorList = []
-        for i in self.tags:
-            buts.update({i['name'] : i['path']})
-            colorList.append(i['color'])
-        self.buttons = []
-        i=0
-        for name, path in buts.items():
-            self.buttons.append(QtGui.QPushButton("#"+name, self))
-            width = self.buttons[-1].fontMetrics().boundingRect(name).width() + 20
-            self.buttons[-1].setMaximumWidth(width)
-            self.buttons[-1].clicked.connect(partial(self.callClickedTag, data=name))
-            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
-            self.buttons[-1].setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-            self.tagButtons.addWidget(self.buttons[-1])
-            i += 1
+        self.showTagsOnMainWindow()
         
     def main(self):
         #self.showMaximized()
@@ -95,7 +78,30 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.treeView_2.customContextMenuRequested.connect(self.rightClickMenu)
         
         self.filterTxtLine.textChanged.connect(self.setFilter)
+    
+    def showTagsOnMainWindow(self):
+        tagObj = showTags.showTags()
+        self.tags = tagObj.getTags()
+        buts = {}
+        colorList = []
+        for i in self.tags:
+            buts.update({i['name'] : i['path']})
+            colorList.append(i['color'])
+        self.buttons = []
+        i=0
+        for name, path in buts.items():
+            self.buttons.append(QtGui.QPushButton("#"+name, self))
+            width = self.buttons[-1].fontMetrics().boundingRect(name).width() + 20
+            self.buttons[-1].setMaximumWidth(width)
+            self.buttons[-1].clicked.connect(partial(self.callClickedTag, data=name))
+            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
+            self.buttons[-1].setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+            self.tagButtons.addWidget(self.buttons[-1])
+            i += 1
         
+    def clearTagsOnMainWindow(self):
+        for i in self.buttons:
+            i.setParent(None)
     
     def callClickedTag(self, x, data):
         import showTagsPaths
@@ -108,6 +114,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.currentDirTxtLine2.setText(tag.newTagPath)
                
         self.doShowDir(self.activeTreeview)
+        self.clearTagsOnMainWindow()
+        self.showTagsOnMainWindow()
         
     def search(self):
         from src import searchFile
@@ -220,8 +228,10 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     
     def callCreateTag(self):
         import createTag
-        createTag.createTag(self.currentDir + "/" + self.clickedFileOrDir)
-    
+        newTag = createTag.createTag(self.currentDir + "/" + self.clickedFileOrDir)
+        newTag.showNewTagDialog()
+        self.clearTagsOnMainWindow()
+        self.showTagsOnMainWindow()
     
     def callProperties(self):
         import properties

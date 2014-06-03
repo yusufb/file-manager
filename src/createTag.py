@@ -21,6 +21,8 @@ class createTag(Main.WindowSource, createTagUI.Ui_Form):
         else:
             print "new tag can not be created"
                 
+        self.clearTagsOnMainWindow()
+        self.showTagsOnMainWindow()
         self.dialog.close()
     
     def showNewTagDialog(self):
@@ -37,6 +39,6 @@ class createTag(Main.WindowSource, createTagUI.Ui_Form):
     def __init__(self, fullPath):
         super(createTag, self).__init__(None)
         self.fullPath = fullPath
-        self.showNewTagDialog()
+        #self.showNewTagDialog()
 
 
