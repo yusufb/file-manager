@@ -48,6 +48,7 @@ class searchFile(Main.WindowSource):
         self.dialog.ui.lineEdit_2.setText(self.searchDir)
         self.dialog.ui.pushButton_2.clicked.connect(self.closeDialog)
         self.dialog.ui.pushButton.clicked.connect(self.search)
+        self.dialog.ui.lineEdit.setFocus()
 
         self.dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.dialog.exec_()
