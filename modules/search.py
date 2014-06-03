@@ -46,25 +46,27 @@ def search(fileName, search_type='a', search_dir='.', exact=True):
 def recursiveSearch(fileName, search_type='a', search_dir='.', exact=True):
     
     matches = []
+    fileName = fileName.lower()
     
     for root, dirnames, filenames in os.walk(search_dir):
+        
         if exact:
             if search_type == "f" or search_type == "a":
                 for filename in filenames:
-                    if filename == fileName:
+                    if filename.lower() == fileName:
                             matches.append(os.path.join(root, filename))
             if search_type == "d" or search_type == "a":
                 for dirname in dirnames:
-                    if dirname == fileName:
+                    if dirname.lower() == fileName:
                             matches.append(os.path.join(root, dirname))
         else:
             if search_type == "f" or search_type == "a":
                 for filename in filenames:
-                    if fileName in filename:
+                    if fileName in filename.lower():
                             matches.append(os.path.join(root, filename))
             if search_type == "d" or search_type == "a":
                 for dirname in dirnames:
-                    if fileName in dirname:
+                    if fileName in dirname.lower():
                             matches.append(os.path.join(root, dirname))           
             
     return matches

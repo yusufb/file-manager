@@ -110,8 +110,16 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
     def search(self):
         from src import searchFile
+        self.newSearchPath = ""
+        sf = searchFile.searchFile(self.currentDir)
+
+        if self.activeTreeview==0:
+            self.currentDirTxtLine.setText(sf.newSearchPath)
+        elif self.activeTreeview==1:
+            self.currentDirTxtLine2.setText(sf.newSearchPath)
+            
+        self.doShowDir(self.activeTreeview)
         
-        searchFile.searchFile(self.currentDir)
     
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )

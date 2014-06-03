@@ -7,10 +7,18 @@ from PyQt4 import QtCore,QtGui,Qt
 from modules import search
 from src import Utils
 from ui import searchUI, searchListUI
+from genericpath import isdir, isfile
+
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
 
 class searchFile(Main.WindowSource):
     newFileName = ""
+    clickedFile = ""
     searchResults = []
+    newSearchPath = ""
     
     def search(self):
         self.dialog.close()
@@ -77,8 +85,26 @@ class searchFile(Main.WindowSource):
             
             index = index + 1
         
+        QtCore.QObject.connect(self.dialog.ui.searchList, QtCore.SIGNAL(_fromUtf8("itemDoubleClicked(QTableWidgetItem*)")), self.directToDir)
+        QtCore.QObject.connect(self.dialog.ui.searchList, QtCore.SIGNAL(_fromUtf8("itemClicked(QTableWidgetItem*)")), self.setClickedPath)
+        
         self.dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.dialog.exec_()
+
+    def setClickedPath(self, index):
+        self.clickedPath = unicode(index.toolTip())
+    
+    def directToDir(self, index):
+        newPath = unicode(index.toolTip())
+        print newPath + " is clicked on search menu"
+        if isdir(newPath):
+            self.newSearchPath = newPath
+            self.dialog.close()
+            
+        elif isfile(newPath):
+            self.clickedFile = newPath
+            self.callOpenFile()
+            
         
     def closeDialog(self):
         self.dialog.close()
