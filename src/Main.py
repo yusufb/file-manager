@@ -85,6 +85,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.bookmarkListButton.triggered.connect(self.callListBookmarks)
         self.ftpConnectionButton.triggered.connect(self.callFtp)
         self.createTagButton.triggered.connect(self.callCreateTag)
+        self.searchButton.triggered.connect(self.search)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -97,6 +98,10 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     
     def test(self, x ,data):
         print x
+        
+    def search(self):
+        from src import searchFile
+        searchFile.searchFile(self.currentDir)
     
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )

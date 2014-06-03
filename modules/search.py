@@ -69,4 +69,4 @@ def recursiveSearch(fileName, search_type='a', search_dir='.', exact=True):
             
     return matches
 
-print recursiveSearch("asd", "f", "/home/yusuf/Desktop", False)
+print recursiveSearch("test", "f", "/", False)

@@ -1,8 +1,14 @@
 eclipse.preferences.version=1
+encoding//src/renameFileDir.py=utf-8
 encoding//test/un.py=utf-8
 encoding//test/un2.py=utf-8
+encoding//ui/bookmarkListUI.py=utf-8
 encoding//ui/bookmarkUI.py=utf-8
 encoding//ui/design.py=utf-8
 encoding//ui/design2.py=utf-8
 encoding//ui/ftpConnWidget.py=utf-8
+encoding//ui/propertiesUI.py=utf-8
+encoding//ui/searchListUI.py=utf-8
+encoding//ui/searchUI.py=utf-8
+encoding//ui/tagUI.py=utf-8
 encoding/TODO=UTF-8
