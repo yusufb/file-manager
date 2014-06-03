@@ -49,6 +49,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.buttons[-1].setMaximumWidth(width)
             self.buttons[-1].clicked.connect(partial(self.callClickedTag, data=name))
             self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
+            self.buttons[-1].setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
             self.tagButtons.addWidget(self.buttons[-1])
             i += 1
         
