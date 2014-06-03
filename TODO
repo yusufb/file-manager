@@ -23,4 +23,4 @@ file search
 show all tags at bottom of window
 show tags of a file
 back button for current dir text lines
-case insensitive search
+case insensitive search, open dir & file

@@ -31,6 +31,7 @@ class Ui_Form(object):
         self.checkBox_3 = QtGui.QCheckBox(Form)
         self.checkBox_3.setGeometry(QtCore.QRect(100, 90, 101, 17))
         self.checkBox_3.setObjectName(_fromUtf8("checkBox_3"))
+        
         self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setGeometry(QtCore.QRect(10, 210, 75, 23))
         self.pushButton.setAutoDefault(True)
@@ -39,6 +40,7 @@ class Ui_Form(object):
         self.pushButton_2 = QtGui.QPushButton(Form)
         self.pushButton_2.setGeometry(QtCore.QRect(100, 210, 75, 23))
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        
         self.line = QtGui.QFrame(Form)
         self.line.setGeometry(QtCore.QRect(90, 80, 3, 61))
         self.line.setFrameShape(QtGui.QFrame.VLine)
@@ -50,12 +52,16 @@ class Ui_Form(object):
         self.verticalLayout = QtGui.QVBoxLayout(self.widget)
         self.verticalLayout.setMargin(0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.checkBox_2 = QtGui.QCheckBox(self.widget)
-        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
-        self.verticalLayout.addWidget(self.checkBox_2)
+        
         self.checkBox = QtGui.QCheckBox(self.widget)
         self.checkBox.setObjectName(_fromUtf8("checkBox"))
+        self.checkBox.setChecked(True)
         self.verticalLayout.addWidget(self.checkBox)
+        self.checkBox_2 = QtGui.QCheckBox(self.widget)
+        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
+        self.checkBox_2.setChecked(True)
+        self.verticalLayout.addWidget(self.checkBox_2)
+
         self.widget1 = QtGui.QWidget(Form)
         self.widget1.setGeometry(QtCore.QRect(10, 150, 381, 22))
         self.widget1.setObjectName(_fromUtf8("widget1"))
@@ -71,9 +77,11 @@ class Ui_Form(object):
         self.widget2 = QtGui.QWidget(Form)
         self.widget2.setGeometry(QtCore.QRect(10, 30, 381, 22))
         self.widget2.setObjectName(_fromUtf8("widget2"))
+        
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.widget2)
         self.horizontalLayout_2.setMargin(0)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        
         self.label = QtGui.QLabel(self.widget2)
         self.label.setObjectName(_fromUtf8("label"))
         self.horizontalLayout_2.addWidget(self.label)
@@ -85,12 +93,12 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "Form", None))
+        Form.setWindowTitle(_translate("Form", "Search file or directory", None))
         self.checkBox_3.setText(_translate("Form", "Exact Match", None))
         self.pushButton.setText(_translate("Form", "Search", None))
         self.pushButton_2.setText(_translate("Form", "Cancel", None))
-        self.checkBox_2.setText(_translate("Form", "Directory", None))
-        self.checkBox.setText(_translate("Form", "File", None))
+        self.checkBox_2.setText(_translate("Form", "Directories", None))
+        self.checkBox.setText(_translate("Form", "Files", None))
         self.label_2.setText(_translate("Form", "Search in", None))
         self.label.setText(_translate("Form", "Search ", None))
 
