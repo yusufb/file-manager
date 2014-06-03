@@ -4,6 +4,60 @@ Created on May 31, 2014
 '''
 
 import json
+from src import jsonFile
+
+
+def createTag2(jsonFilePath, path, tagName, color):
+    
+    j = jsonFile.jsonFile()
+    toAdd = {'name' : tagName, 'path' : path, 'color' : color}
+    readFromFile = j.fileToJson(jsonFilePath)
+    tagHasThesePaths = []
+    for index in range(len(readFromFile)):
+        if(readFromFile[index]['name'] == tagName):
+            tagHasThesePaths.append(readFromFile[index]['path'])
+    #pprint(readFromFile)
+    
+    if path in tagHasThesePaths:
+        print 'already this path signed this tag'
+        return
+    
+    toWriteList = []
+    toWriteList.extend(readFromFile)
+    toWriteList.append(dict(toAdd))
+    
+    if j.jsonToFile(toWriteList, jsonFilePath):
+        print 'tag has created'
+
+
+
+def printTagsName(jsonFilePath):
+    j = jsonFile.jsonFile()
+    readFromFile = j.fileToJson(jsonFilePath)
+    availableTags = []
+    for index in range(len(readFromFile)):
+        availableTags.append(readFromFile[index]['name'])
+    return availableTags
+
+def showAllTags(jsonFilePath, tagName):
+    j = jsonFile.jsonFile()
+    readFromFile = j.fileToJson(jsonFilePath)
+    allTagsPaths = []
+    for index in range(len(readFromFile)):
+        if readFromFile[index]['name'] == tagName and len(readFromFile[index]['path'])>0:
+            allTagsPaths.append(readFromFile[index]['path'])
+    return allTagsPaths
+
+def getAllRecordsByTagName(jsonFile, name):
+    availablePaths = []
+    jsonObjj = readTags(jsonFile)
+    for index in range(len(jsonObjj)):
+        if jsonObjj[index]['name'] == name:
+            availablePaths.append(jsonObjj[index]['path'])
+    return availablePaths
+
+
+
 
 
 def createTag(jsonFile, path, tagName, color):
@@ -27,21 +81,6 @@ def readTags(jsonFile):
     jsonObj = json.loads(jsonList)
     return jsonObj
 
-def printTagsName(jsonFile):
-    availableTags = []
-    jsonObjj = readTags(jsonFile)
-    for index in range(len(jsonObjj)):
-        availableTags.append(jsonObjj[index]['name'])
-    return availableTags
 
 def checkTagList(path, name, filePath):
     return path in getAllRecordsByTagName(filePath, name)
-
-def getAllRecordsByTagName(jsonFile, name):
-    availablePaths = []
-    jsonObjj = readTags(jsonFile)
-    for index in range(len(jsonObjj)):
-        if jsonObjj[index]['name'] == name:
-            availablePaths.append(jsonObjj[index]['path'])
-    return availablePaths
-

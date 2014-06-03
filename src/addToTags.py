@@ -23,17 +23,13 @@ class addToTags(Main.WindowSource, tagUI.Ui_Form):
         self.dialog.close()
         
     def addToTags(self):
-        if tag.createTag(self.infoFile, unicode(self.dialog.ui.path.text()), unicode(self.dialog.ui.comboBox.currentText()), ''):#create.createFile(self.currentDir + "/" + self.newFileName):
-            print "the file add to : '" + unicode(self.dialog.ui.comboBox.currentText()) + "' tag" 
-        else:
-            print "the file can not be added"
-                
-        print tag.printTagsName(self.infoFile)
+        tag.createTag2(self.infoFile, unicode(self.dialog.ui.path.text()), unicode(self.dialog.ui.comboBox.currentText()), '')#create.createFile(self.currentDir + "/" + self.newFileName):
         self.dialog.close()
         
     def showAddToTagDialog(self):
         self.dialog = QtGui.QDialog()
         self.availableTags = tag.printTagsName(self.infoFile)
+        self.availableTags = list(set(self.availableTags))
         self.dialog.ui = tagUI.Ui_Form()
         self.dialog.ui.setupUi(self.dialog)
         self.dialog.ui.path.setText(self.fullPath)

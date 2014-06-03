@@ -26,7 +26,7 @@ except AttributeError:
 
 class Ui_Form(object):
     
-    colors = ["Red", "Blue", "Green"]
+    colors = ["Red", "Blue", "Green", "White", "Black", "Cyan", "Magneta", "Yellow", "Gray"]
     
     def setupUi(self, Form2):
         Form2.setObjectName(_fromUtf8("Form2"))

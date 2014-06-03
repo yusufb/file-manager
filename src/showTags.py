@@ -18,6 +18,3 @@ class showTags():
         self.getTags()
 
 s = showTags()
-print type(s.getTags())
-for i in s.getTags():
-    print i['name']

@@ -16,12 +16,11 @@ class createTag(Main.WindowSource, createTagUI.Ui_Form):
         self.dialog.close()
         
     def add(self):
-        if tag.createTag(self.infoFile, '', unicode(self.dialog.ui.name.text()), str(self.dialog.ui.comboBox.currentText()).lower()):#create.createFile(self.currentDir + "/" + self.newFileName):
+        if tag.createTag2(self.infoFile, '', unicode(self.dialog.ui.name.text()), str(self.dialog.ui.comboBox.currentText()).lower()):#create.createFile(self.currentDir + "/" + self.newFileName):
             print "new tag is created: '" + unicode(self.dialog.ui.name.text()) + "'"
         else:
             print "new tag can not be created"
                 
-        print tag.printTagsName(self.infoFile)
         self.dialog.close()
     
     def showNewTagDialog(self):

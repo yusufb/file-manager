@@ -47,7 +47,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.buttons.append(QtGui.QPushButton("#"+name, self))
             width = self.buttons[-1].fontMetrics().boundingRect(name).width() + 20
             self.buttons[-1].setMaximumWidth(width)
-            self.buttons[-1].clicked.connect(partial(self.test, data=path))
+            self.buttons[-1].clicked.connect(partial(self.callClickedTag, data=name))
             self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
             self.tagButtons.addWidget(self.buttons[-1])
             i += 1
@@ -96,11 +96,21 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.filterTxtLine.textChanged.connect(self.setFilter)
         
     
-    def test(self, x ,data):
-        print x
+    def callClickedTag(self, x, data):
+        import showTagsPaths
+        self.newTagPath = ""
+        tag = showTagsPaths.showTagsPaths(data)
+        
+        if self.activeTreeview == 0:
+            self.currentDirTxtLine.setText(tag.newTagPath)
+        elif self.activeTreeview == 1:
+            self.currentDirTxtLine2.setText(tag.newTagPath)
+               
+        self.doShowDir(self.activeTreeview)
         
     def search(self):
         from src import searchFile
+        
         searchFile.searchFile(self.currentDir)
     
     def setFilter(self):
