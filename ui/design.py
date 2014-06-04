@@ -221,9 +221,12 @@ class Ui_Dialog(object):
         self.toolBar.addAction(self.renameButton)
         self.toolBar.addAction(self.deleteButton)
         self.toolBar.addAction(self.fileTypeButton)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.bookmarkButton)
         self.toolBar.addAction(self.bookmarkListButton)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.ftpConnectionButton)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.createTagButton)
         self.toolBar.addAction(self.searchButton)
         
