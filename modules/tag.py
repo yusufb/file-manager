@@ -5,6 +5,7 @@ Created on May 31, 2014
 
 import json
 from src import jsonFile
+from json.decoder import JSONObject
 
 
 def createTag2(jsonFilePath, path, tagName, color):
@@ -47,6 +48,19 @@ def showAllTags(jsonFilePath, tagName):
         if readFromFile[index]['name'] == tagName and len(readFromFile[index]['path'])>0:
             allTagsPaths.append(readFromFile[index]['path'])
     return allTagsPaths
+
+
+def getAllRecordsByPath(jsonFilePath, path):
+    j = jsonFile.jsonFile()
+    readFromFile = j.fileToJson(jsonFilePath)
+    availableTagName = []
+    for index in range(len(readFromFile)):
+        if readFromFile[index]['path'] == path:
+            availableTagName.append(readFromFile[index]['name'])
+    return availableTagName
+
+
+
 
 def getAllRecordsByTagName(jsonFile, name):
     availablePaths = []

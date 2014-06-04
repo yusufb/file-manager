@@ -26,7 +26,6 @@ except AttributeError:
 
 class Ui_Form(object):
     
-    colors = ["Red", "Blue", "Green", "White", "Black", "Cyan", "Magneta", "Yellow", "Gray"]
     
     def setupUi(self, Form2):
         Form2.setObjectName(_fromUtf8("Form2"))
@@ -39,9 +38,6 @@ class Ui_Form(object):
         self.comboBox.setGeometry(QtCore.QRect(60, 70, 113, 20))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
         
-        '''for color in self.colors:
-            self.comboBox.addItem(_fromUtf8(color))
-        '''
         self.label_2 = QtGui.QLabel(Form2)
         self.label_2.setGeometry(QtCore.QRect(10, 40, 46, 13))
         self.label_2.setObjectName(_fromUtf8("label_2"))
