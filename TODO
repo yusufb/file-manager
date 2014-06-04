@@ -24,4 +24,3 @@ show all tags at bottom of window
 show tags of a file
 back button for current dir text lines
 update tags on main window
-add [] if json file is empty
