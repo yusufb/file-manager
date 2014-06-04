@@ -71,4 +71,3 @@ def recursiveSearch(fileName, search_type='a', search_dir='.', exact=True):
             
     return matches
 
-print recursiveSearch("test", "f", "/", False)

@@ -118,7 +118,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.showTagsOnMainWindow()
         
     def search(self):
-        from src import searchFile
+        import searchFile
         self.newSearchPath = ""
         sf = searchFile.searchFile(self.currentDir)
 
