@@ -108,12 +108,13 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.newTagPath = ""
         tag = showTagsPaths.showTagsPaths(data)
         
-        if self.activeTreeview == 0:
-            self.currentDirTxtLine.setText(tag.newTagPath)
-        elif self.activeTreeview == 1:
-            self.currentDirTxtLine2.setText(tag.newTagPath)
-               
-        self.doShowDir(self.activeTreeview)
+        if tag.changePath:
+            if self.activeTreeview == 0:
+                self.currentDirTxtLine.setText(tag.newTagPath)
+            elif self.activeTreeview == 1:
+                self.currentDirTxtLine2.setText(tag.newTagPath)
+                   
+            self.doShowDir(self.activeTreeview)
         self.clearTagsOnMainWindow()
         self.showTagsOnMainWindow()
         
@@ -122,12 +123,13 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.newSearchPath = ""
         sf = searchFile.searchFile(self.currentDir)
 
-        if self.activeTreeview==0:
-            self.currentDirTxtLine.setText(sf.newSearchPath)
-        elif self.activeTreeview==1:
-            self.currentDirTxtLine2.setText(sf.newSearchPath)
-            
-        self.doShowDir(self.activeTreeview)
+        if sf.changePath:
+            if self.activeTreeview==0:
+                self.currentDirTxtLine.setText(sf.newSearchPath)
+            elif self.activeTreeview==1:
+                self.currentDirTxtLine2.setText(sf.newSearchPath)
+                
+            self.doShowDir(self.activeTreeview)
         
     
     def setFilter(self):
@@ -199,12 +201,13 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         import showBookmarksList
         bm = showBookmarksList.showBookmarksList(self.currentDir + "/" + self.clickedFileOrDir)
 
-        if self.activeTreeview==0:
-            self.currentDirTxtLine.setText(bm.newBookmarkPath)
-        elif self.activeTreeview==1:
-            self.currentDirTxtLine2.setText(bm.newBookmarkPath)
-            
-        self.doShowDir(self.activeTreeview)
+        if bm.changePath:
+            if self.activeTreeview==0:
+                self.currentDirTxtLine.setText(bm.newBookmarkPath)
+            elif self.activeTreeview==1:
+                self.currentDirTxtLine2.setText(bm.newBookmarkPath)
+                
+            self.doShowDir(self.activeTreeview)
     
     def callDelete(self):
         import deleteFileDir
@@ -281,9 +284,9 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
     def doShowDir(self, tv):
         self.activeTreeview = tv
         if self.activeTreeview==0:
-            newDir = self.currentDirTxtLine.text()
+            newDir = unicode(self.currentDirTxtLine.text())
         elif self.activeTreeview==1:
-            newDir = self.currentDirTxtLine2.text()
+            newDir = unicode(self.currentDirTxtLine2.text())
             
         self.clickedFileOrDir = ""
         
@@ -300,12 +303,12 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.changeActiveTreeview(tv)
             
         else:
-            print newDir + " is not a directory"
+            print unicode(newDir) + " is not a directory"
     
     def treeviewClicked(self, index):
-        print "> " + self.fileSystemModels[self.activeTreeview].filePath(index)
-        newPath = unicode(self.fileSystemModels[self.activeTreeview].filePath(index))
-        print "new path is " + newPath
+        print "> " + unicode(self.fileSystemModels[self.activeTreeview].filePath(index))
+        newPath = self.fileSystemModels[self.activeTreeview].filePath(index)
+        print "new path is " + unicode(newPath)
         if isdir(newPath):
             self.currentDir = newPath
             if self.activeTreeview==0:

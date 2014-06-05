@@ -21,6 +21,7 @@ class showTagsPaths(Main.WindowSource, tagListUI.Ui_Form):
     tagName = ""
     clickedPath = ""
     newTagPath = ""
+    changePath = False
     
     def showTagsPaths(self):
         tagsPathsList =  tag.showAllTags(self.infoFile, self.tagName)
@@ -75,8 +76,10 @@ class showTagsPaths(Main.WindowSource, tagListUI.Ui_Form):
     
     def directToDir(self, index):
         newPath = unicode(index.toolTip())
+        
         if isdir(newPath):
             self.newTagPath = newPath
+            self.changePath = True
             self.dialog.close()
             
         elif isfile(newPath):

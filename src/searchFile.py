@@ -19,6 +19,7 @@ class searchFile(Main.WindowSource):
     clickedFile = ""
     searchResults = []
     newSearchPath = ""
+    changePath = False
     
     def search(self):
         self.dialog.close()
@@ -100,6 +101,7 @@ class searchFile(Main.WindowSource):
         print newPath + " is clicked on search menu"
         if isdir(newPath):
             self.newSearchPath = newPath
+            self.changePath = True
             self.dialog.close()
             
         elif isfile(newPath):

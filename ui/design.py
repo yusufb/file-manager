@@ -232,6 +232,10 @@ class Ui_Dialog(object):
         
         
         ######################
+        self.previewLabel = QtGui.QLabel(self.centralwidget)
+        self.previewLabel.setText("<b>Image Preview</b>")
+        self.previewLabel.setGeometry(QtCore.QRect(1150, 180, 440, 24))
+        self.previewLabel.setObjectName(_fromUtf8("previewLabel"))
         previewFileName = "../resources/img/blank.png"
         self.imageLabel = QtGui.QLabel(self.centralwidget)
         self.imageLabel.setObjectName(_fromUtf8("imageLabel"))

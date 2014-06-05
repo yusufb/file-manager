@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
+encoding//modules/create.py=utf-8
 encoding//src/renameFileDir.py=utf-8
+encoding//src/Main.py=utf-8
 encoding//test/un.py=utf-8
 encoding//test/un2.py=utf-8
 encoding//ui/bookmarkListUI.py=utf-8

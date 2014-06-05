@@ -21,6 +21,7 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
     fullPath = ""
     clickedPath = ""
     newBookmarkPath = ""
+    changePath = False
     
     def showBookmark(self):
         bookmarkList =  bookmark.showAllBookmarks(self.infoFile)
@@ -80,6 +81,7 @@ class showBookmarksList(Main.WindowSource, bookmarkListUI.Ui_Form):
         newPath = unicode(index.toolTip())
         if isdir(newPath):
             self.newBookmarkPath = newPath
+            self.changePath = True
             
         elif isfile(newPath):
             self.clickedFile = newPath
