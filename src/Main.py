@@ -83,18 +83,20 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         tagObj = showTags.showTags()
         self.tags = tagObj.getTags()
         buts = {}
+        print type(buts)
         colorList = []
+        
         for i in self.tags:
-            buts.update({i['name'] : i['path']})
+            buts.update({i['name'] : i['color']})
             colorList.append(i['color'])
         self.buttons = []
         i=0
-        for name, path in buts.items():
+        for name, color in buts.items():
             self.buttons.append(QtGui.QPushButton("#"+name, self))
             width = self.buttons[-1].fontMetrics().boundingRect(name).width() + 20
             self.buttons[-1].setMaximumWidth(width)
             self.buttons[-1].clicked.connect(partial(self.callClickedTag, data=name))
-            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+colorList[i]+"; }")
+            self.buttons[-1].setStyleSheet("QPushButton { background-color : transparent; color : "+color+"; }")
             self.buttons[-1].setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
             self.tagButtons.addWidget(self.buttons[-1])
             i += 1
