@@ -30,17 +30,17 @@ def addToBookmarks2(jsonfile, path, name):
 def checkBookmarkList(path, filePath):
     return path in getAllPaths(filePath)
     
-def addToBookmarks(jsonfile, path, name):
+'''def addToBookmarks(jsonfile, path, name):
     if checkBookmarkList(path, jsonfile):
         print 'already in bookmarks'
     else:
         with open(jsonfile, 'a') as datafile:
             json.dump(createJSONObject(jsonfile, path, name), datafile)
-            print 'added to bookmarks'
+            print 'added to bookmarks'''
 
-def createJSONObject(jsonfile, path, name):
+'''def createJSONObject(jsonfile, path, name):
     data = {'id':idGenerator(jsonfile), 'path':str(path), 'name':name}
-    return data
+    return data'''
 
 def readBookmarks(jsonFile):
     plainJSONString = open(jsonFile).read();
@@ -63,9 +63,9 @@ def showAllBookmarks(jsonFile):
         allBookmarks.append(jsonObjj[index])
     return allBookmarks
     
-def idGenerator(jsonFile):
+'''def idGenerator(jsonFile):
     jsonObjj = readBookmarks(jsonFile)
     if jsonObjj != []:
         return jsonObjj[len(jsonObjj)-1]['id'] + 1
     else:
-        return 0
+        return 0'''

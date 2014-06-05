@@ -62,7 +62,7 @@ def getAllRecordsByPath(jsonFilePath, path):
 
 
 
-def getAllRecordsByTagName(jsonFile, name):
+'''def getAllRecordsByTagName(jsonFile, name):
     availablePaths = []
     jsonObjj = readTags(jsonFile)
     for index in range(len(jsonObjj)):
@@ -98,3 +98,4 @@ def readTags(jsonFile):
 
 def checkTagList(path, name, filePath):
     return path in getAllRecordsByTagName(filePath, name)
+'''

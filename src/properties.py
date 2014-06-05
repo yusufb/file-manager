@@ -35,9 +35,13 @@ class properties(Main.WindowSource, propertiesUI.Ui_Form):
         availableTagName = tag.getAllRecordsByPath(self.infoFile, unicode(self.fullPath))
         print availableTagName
         for value in availableTagName:
-            self.tagList += value
+            self.tagList += value + ' '
             
         self.dialog.ui.tagLabelValue.setText(self.tagList)   
+        '''
+            change permission os.chmod(path, octal code)
+        '''
+        
         
         #self.dialog.ui.removeButton.clicked.connect(self.deleteFromBookmarkList)
 
