@@ -7,6 +7,7 @@ from PyQt4 import QtCore,QtGui
 from modules import ftp
 from ui import ftpConnWidget
 import os
+import platform
 from modules.ftp import ftpConnection
 
 
@@ -20,6 +21,10 @@ class ftpConn(Main.WindowSource,ftpConnWidget.Ui_Form):
         password=unicode(self.dialog.ui.passwordTxt.text())
         username=unicode(self.dialog.ui.usernameTxt.text())
         port=unicode(self.dialog.ui.portTxt.text())
+        if len(port)<1:
+            port=21
+        else:
+            port=int(port)    
         ftp.ftpConnection(self.host,port, username, password)
         print self.getPath()
         self.closeDialog()
@@ -39,7 +44,10 @@ class ftpConn(Main.WindowSource,ftpConnWidget.Ui_Form):
         self.dialog.exec_()
         
     def getPath(self):
-        self.path="/run/user/" + str(os.getuid()) + "/gvfs/ftp:host=" + self.host
+        if platform.system()=='Windows':
+            self.path=""
+        else:    
+            self.path="/run/user/" + str(os.getuid()) + "/gvfs/ftp:host=" + self.host
         return self.path
 
     def __init__(self):
