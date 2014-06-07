@@ -1,5 +1,5 @@
 from PyQt4 import QtCore,QtGui,Qt
-import sys
+import sys, os
 from ui import design
 from genericpath import isdir, isfile
 from collections import OrderedDict
@@ -70,6 +70,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         self.ftpConnectionButton.triggered.connect(self.callFtp)
         self.createTagButton.triggered.connect(self.callCreateTag)
         self.searchButton.triggered.connect(self.search)
+        self.aboutButton.triggered.connect(self.about)
         
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.rightClickMenu)
@@ -83,7 +84,6 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         tagObj = showTags.showTags()
         self.tags = tagObj.getTags()
         buts = {}
-        print type(buts)
         colorList = []
         
         for i in self.tags:
@@ -133,6 +133,9 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
                 
             self.doShowDir(self.activeTreeview)
         
+    def about(self):
+        import about
+        about.aboutDialog()
     
     def setFilter(self):
         self.filter = unicode( self.filterTxtLine.text() )
@@ -149,6 +152,8 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.currentDir = self.currentDirTxtLine2.text()
             self.currentDirTxtLine.setStyleSheet("QLineEdit { background-color : #ccc; color : #999; }")
             self.currentDirTxtLine2.setStyleSheet("")
+        
+        self.showCurrentDirInfo()
             
     def rightClickMenu(self, pos):
         print "right clicked"
@@ -280,6 +285,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
                 self.currentDirTxtLine.setText(self.currentDir)
             elif self.activeTreeview==1:
                 self.currentDirTxtLine2.setText(self.currentDir)
+            self.showCurrentDirInfo()
         else:
             print parentDir + " is not a directory"
         
@@ -348,13 +354,42 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
             self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(QtGui.QImage(self.currentDir + "/" + self.clickedFileOrDir)))
             self.imageLabel.setVisible(True)
             self.scrollArea.setVisible(True)
+            self.previewLabel.setVisible(True)
         else:
             self.imageLabel.setVisible(False)
             self.scrollArea.setVisible(False)
+            self.previewLabel.setVisible(False)
+            
+    def showCurrentDirInfo(self):
+        numberOfFiles = len([item for item in os.listdir(unicode(self.currentDir)) if not item[0] == '.' and os.path.isfile(os.path.join(unicode(self.currentDir), item))])
+        numberOfDirs = len([item for item in os.listdir(unicode(self.currentDir)) if not item[0] == '.' and os.path.isdir(os.path.join(unicode(self.currentDir), item))]) 
+        
+        numberOfHiddenFiles = len([item for item in os.listdir(unicode(self.currentDir)) if item[0] == '.'  and os.path.isfile(os.path.join(unicode(self.currentDir), item))]) 
+        numberOfHiddenDirs = len([item for item in os.listdir(unicode(self.currentDir)) if item[0] == '.' and os.path.isdir(os.path.join(unicode(self.currentDir), item))]) 
+        
+        infoText = "<u>" + Utils.getFileNameFromFullPath(unicode(self.currentDir)) + "</u><br><br>"
+        infoText +=  str(numberOfDirs)
+        infoText += " directory" if numberOfDirs==1 else " directories"
+        infoText += "<br>"
+        
+        if numberOfHiddenDirs>0:
+            infoText += "(+" + str(numberOfHiddenDirs) + " hidden " 
+            infoText += "directory" if numberOfHiddenDirs==1 else "directories" 
+            infoText += ")<br>"
+            
+        infoText +=  str(numberOfFiles) 
+        infoText += " file" if numberOfFiles==1 else " files" 
+        infoText += "<br>"
+        
+        if numberOfHiddenFiles>0:
+            infoText += "(+" + str(numberOfHiddenFiles) + " hidden " 
+            infoText += "file" if numberOfHiddenFiles==1 else "files"
+            infoText += ")<br>"
+        
+        self.dirInfoLabel.setText(infoText)
             
     def mainTestFunc(self, text):
         print text
-        self.showParentDir()
         
             
         

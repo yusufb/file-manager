@@ -212,6 +212,13 @@ class Ui_Dialog(object):
         self.searchButton.setIcon(icon12)
         self.searchButton.setText("Search")
         self.searchButton.setObjectName(_fromUtf8("searchButton"))
+        
+        self.aboutButton = QtGui.QAction(MainWindow)
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap(_fromUtf8("../resources/img/about.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.aboutButton.setIcon(icon13)
+        self.aboutButton.setText("About")
+        self.aboutButton.setObjectName(_fromUtf8("aboutButton"))
      
         self.toolBar.addAction(self.newDirButton)
         self.toolBar.addAction(self.newFileButton)
@@ -229,13 +236,16 @@ class Ui_Dialog(object):
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.createTagButton)
         self.toolBar.addAction(self.searchButton)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.aboutButton)
         
         
         ######################
         self.previewLabel = QtGui.QLabel(self.centralwidget)
         self.previewLabel.setText("<b>Image Preview</b>")
-        self.previewLabel.setGeometry(QtCore.QRect(1150, 180, 440, 24))
+        self.previewLabel.setGeometry(QtCore.QRect(1180, 190, 440, 24))
         self.previewLabel.setObjectName(_fromUtf8("previewLabel"))
+        self.previewLabel.setVisible(False)
         previewFileName = "../resources/img/blank.png"
         self.imageLabel = QtGui.QLabel(self.centralwidget)
         self.imageLabel.setObjectName(_fromUtf8("imageLabel"))
@@ -255,8 +265,13 @@ class Ui_Dialog(object):
         self.scrollArea.setWidget(self.imageLabel)
         self.scrollArea.setVisible(False)
         
+        self.dirInfoLabel = QtGui.QLabel(self.centralwidget)
+        self.dirInfoLabel.setGeometry(QtCore.QRect(1150, 30, 160, 200))
+        self.dirInfoLabel.setObjectName(_fromUtf8("dirInfoLabel"))
+        self.dirInfoLabel.setVisible(True)
+        
+        
         MainWindow.setCentralWidget(self.centralwidget)
-        ##########################
         
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
