@@ -395,6 +395,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         
 if __name__=='__main__':
     app = QtGui.QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon('../resources/img/buffalo-fm-icon.png'))
     hwl1 = WindowSource()
     hwl1.main()
     sys.exit(app.exec_())
