@@ -28,6 +28,8 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(550, 450)
+        Form.setMinimumSize(QtCore.QSize(550, 450))
+        Form.setMaximumSize(QtCore.QSize(550, 450))
         self.baslikLabel = QtGui.QLabel(Form)
         self.baslikLabel.setGeometry(QtCore.QRect(155, 10, 250, 30))
         self.baslikLabel.setAlignment(QtCore.Qt.AlignCenter)
