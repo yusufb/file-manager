@@ -27,7 +27,7 @@ except AttributeError:
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(550, 430)
+        Form.resize(550, 450)
         self.baslikLabel = QtGui.QLabel(Form)
         self.baslikLabel.setGeometry(QtCore.QRect(155, 10, 250, 30))
         self.baslikLabel.setAlignment(QtCore.Qt.AlignCenter)
@@ -50,7 +50,7 @@ class Ui_Form(object):
         self.infoLabel.setObjectName(_fromUtf8("infoLabel"))
         self.infoLabel.setText("<b><u>B</u>rowse <u>U</u>r <u>F</u>iles & <u>F</u>olders <u>A</u>nd <u>L</u>ive <u>O</u>n</b>")
         self.nameLabel = QtGui.QLabel(Form)
-        self.nameLabel.setGeometry(QtCore.QRect(0, 320, 550, 80))
+        self.nameLabel.setGeometry(QtCore.QRect(0, 320, 550, 100))
         self.nameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.nameLabel.setObjectName(_fromUtf8("nameLabel"))
         self.nameLabel.setText(u"Yusuf Beyaz, A. Utku Soytaş, Yiğit Anıl<br><br><i>Buffalo File Manager is released under GPL v3 <br> This program is free software: you can redistribute it and/or modify it under the <br> terms of the GNU General Public License as published by the Free Software Foundation </i><br>2014")
