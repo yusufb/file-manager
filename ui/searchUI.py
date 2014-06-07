@@ -28,8 +28,10 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(404, 257)
+        Form.setMinimumSize(QtCore.QSize(404, 257))
+        Form.setMaximumSize(QtCore.QSize(404, 257))
         self.checkBox_3 = QtGui.QCheckBox(Form)
-        self.checkBox_3.setGeometry(QtCore.QRect(100, 90, 101, 17))
+        self.checkBox_3.setGeometry(QtCore.QRect(110, 90, 101, 17))
         self.checkBox_3.setObjectName(_fromUtf8("checkBox_3"))
         
         self.pushButton = QtGui.QPushButton(Form)
@@ -42,12 +44,12 @@ class Ui_Form(object):
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
         
         self.line = QtGui.QFrame(Form)
-        self.line.setGeometry(QtCore.QRect(90, 80, 3, 61))
+        self.line.setGeometry(QtCore.QRect(100, 80, 3, 61))
         self.line.setFrameShape(QtGui.QFrame.VLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.widget = QtGui.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(10, 90, 69, 42))
+        self.widget.setGeometry(QtCore.QRect(10, 90, 75, 42))
         self.widget.setObjectName(_fromUtf8("widget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.widget)
         self.verticalLayout.setMargin(0)
