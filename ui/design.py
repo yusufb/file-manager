@@ -21,7 +21,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("Dialog", "File Manager", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("Dialog", "Buffalo File Manager", None, QtGui.QApplication.UnicodeUTF8))
         MainWindow.resize(1366, 768)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
