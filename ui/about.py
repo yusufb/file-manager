@@ -27,13 +27,13 @@ except AttributeError:
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(556, 433)
-        Form.setA
+        Form.resize(550, 430)
         self.baslikLabel = QtGui.QLabel(Form)
-        self.baslikLabel.setGeometry(QtCore.QRect(230, 10, 46, 13))
+        self.baslikLabel.setGeometry(QtCore.QRect(155, 10, 250, 30))
         self.baslikLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.baslikLabel.setObjectName(_fromUtf8("baslikLabel"))
-        self.baslikLabel.setText("")
+        self.baslikLabel.setStyleSheet('font-size:18pt;')
+        self.baslikLabel.setText("<b>Buffalo File Manager</b>")
         
         '''
         self.graphicsView = QtGui.QGraphicsView(Form)
@@ -41,26 +41,25 @@ class Ui_Form(object):
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))'''
         
         self.pic = QtGui.QLabel(Form)
-        self.pic.setGeometry(10, 10, 400, 600)
+        self.pic.setGeometry(125, 60, 550, 225) #300,225
         self.pic.setPixmap(QtGui.QPixmap('../resources/img/buffalo-fm.png'))
         
         self.infoLabel = QtGui.QLabel(Form)
-        self.infoLabel.setGeometry(QtCore.QRect(230, 290, 46, 13))
+        self.infoLabel.setGeometry(QtCore.QRect(155, 290, 250, 13))
         self.infoLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.infoLabel.setObjectName(_fromUtf8("infoLabel"))
+        self.infoLabel.setText("<b><u>B</u>rowse <u>U</u>r <u>F</u>iles & <u>F</u>olders <u>A</u>nd <u>L</u>ive <u>O</u>n</b>")
         self.nameLabel = QtGui.QLabel(Form)
-        self.nameLabel.setGeometry(QtCore.QRect(230, 320, 46, 13))
+        self.nameLabel.setGeometry(QtCore.QRect(0, 320, 550, 80))
         self.nameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.nameLabel.setObjectName(_fromUtf8("nameLabel"))
+        self.nameLabel.setText(u"Yusuf Beyaz, A. Utku Soytaş, Yiğit Anıl<br><br><i>Buffalo File Manager is released under GPL v3 <br> This program is free software: you can redistribute it and/or modify it under the <br> terms of the GNU General Public License as published by the Free Software Foundation </i><br>2014")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "About Buffalo File Manager", None))
-        self.baslikLabel.setText(_translate("Form", "baslik", None))
-        self.infoLabel.setText(_translate("Form", "info", None))
-        self.nameLabel.setText(_translate("Form", "names", None))
 
 
 if __name__ == "__main__":
