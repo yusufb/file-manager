@@ -86,7 +86,7 @@ class WindowSource(QtGui.QMainWindow,design.Ui_Dialog):
         buts = {}
         colorList = []
         
-        for i in self.tags:
+        for i in reversed(self.tags):
             buts.update({i['name'] : i['color']})
             colorList.append(i['color'])
         self.buttons = []

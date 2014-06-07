@@ -47,7 +47,7 @@ class Ui_Form(object):
         self.pic.setPixmap(QtGui.QPixmap('../resources/img/buffalo-fm.png'))
         
         self.infoLabel = QtGui.QLabel(Form)
-        self.infoLabel.setGeometry(QtCore.QRect(155, 290, 250, 13))
+        self.infoLabel.setGeometry(QtCore.QRect(155, 290, 250, 23))
         self.infoLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.infoLabel.setObjectName(_fromUtf8("infoLabel"))
         self.infoLabel.setText("<b><u>B</u>rowse <u>U</u>r <u>F</u>iles & <u>F</u>olders <u>A</u>nd <u>L</u>ive <u>O</u>n</b>")
